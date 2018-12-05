@@ -1,0 +1,5 @@
+<instrument>
+    <name>Square Synth</name>
+    <oscillator>square</oscillator>
+    <polyphony>88</polyphony>
+</instrument>

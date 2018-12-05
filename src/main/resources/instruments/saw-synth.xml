@@ -1,0 +1,5 @@
+<instrument>
+    <name>Saw Synth</name>
+    <oscillator>saw</oscillator>
+    <polyphony>88</polyphony>
+</instrument>

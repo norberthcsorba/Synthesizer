@@ -1,0 +1,5 @@
+<instrument>
+    <name>Sine Synth</name>
+    <oscillator>sine</oscillator>
+    <polyphony>88</polyphony>
+</instrument>

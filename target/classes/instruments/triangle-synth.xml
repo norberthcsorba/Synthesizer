@@ -1,0 +1,5 @@
+<instrument>
+    <name>Triangle Synth</name>
+    <oscillator>triangle</oscillator>
+    <polyphony>88</polyphony>
+</instrument>
