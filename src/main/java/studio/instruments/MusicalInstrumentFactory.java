@@ -20,7 +20,7 @@ public class MusicalInstrumentFactory {
 
     public static MusicalInstrument createFromBlueprint(File xmlBlueprintFile) {
         Blueprint blueprint = parseXmlBlueprintFile(xmlBlueprintFile);
-        AudioFormat format = new AudioFormat(44100, 16, 1, true, false);
+        AudioFormat format = new AudioFormat(44100, 16, 1, true, true);
         WaveOscillator[] oscillators = new WaveOscillator[blueprint.polyphony];
         for (int i = 0; i < oscillators.length; i++) {
             switch (blueprint.oscType) {

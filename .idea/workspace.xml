@@ -2,29 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02fa8f59-d6be-4b22-abe3-a43f6bc2de3f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/styles/controls.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/styles/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/styles/piano.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/PianoKeyboardMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/PianoKeyboardMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/studio/instruments/MusicalInstrumentFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/instruments/MusicalInstrumentFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/oscillators/SawWaveOscillator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/oscillators/SawWaveOscillator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/oscillators/SquareWaveOscillator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/oscillators/SquareWaveOscillator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/oscillators/TraingleWaveOscillator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/oscillators/TriangleWaveOscillator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/oscillators/WaveOscillator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/oscillators/WaveOscillator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ui/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/layout/main_layout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/layout/main_layout.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/layout/main_layout.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/layout/main_layout.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/studio/PianoKeyboardMapper$KeyLayout.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/studio/PianoKeyboardMapper$KeyLayout.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/studio/instruments/MusicalInstrumentFactory$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/studio/instruments/MusicalInstrumentFactory$MusicalInstrumentBlueprint.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/studio/instruments/MusicalInstrumentFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/studio/instruments/MusicalInstrumentFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/studio/oscillators/SawWaveOscillator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/studio/oscillators/SawWaveOscillator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/studio/oscillators/SquareWaveOscillator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/studio/oscillators/SquareWaveOscillator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/studio/oscillators/TraingleWaveOscillator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/studio/oscillators/WaveOscillator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/studio/oscillators/WaveOscillator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ui/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ui/MainController.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -82,7 +62,7 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="4" />
-          <entry key="java" value="41" />
+          <entry key="java" value="48" />
           <entry key="svg" value="1" />
           <entry key="xml" value="13" />
         </counts>
@@ -90,7 +70,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="4" />
-          <entry key="JAVA" value="41" />
+          <entry key="JAVA" value="48" />
           <entry key="SVG" value="1" />
           <entry key="XML" value="13" />
         </counts>
@@ -99,14 +79,14 @@
         <counts>
           <entry key="css" value="1984" />
           <entry key="dummy" value="13" />
-          <entry key="java" value="8286" />
+          <entry key="java" value="8516" />
           <entry key="xml" value="127" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="1984" />
-          <entry key="JAVA" value="8286" />
+          <entry key="JAVA" value="8516" />
           <entry key="PLAIN_TEXT" value="13" />
           <entry key="XML" value="127" />
         </counts>
@@ -115,29 +95,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ui/MainController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
-              <caret line="31" column="9" lean-forward="true" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/studio/instruments/MusicalInstrumentFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="27" column="68" lean-forward="true" selection-start-line="27" selection-start-column="68" selection-end-line="27" selection-end-column="68" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/studio/oscillators/WaveOscillator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
-              <caret line="57" column="9" lean-forward="true" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
+            <state relative-caret-position="350">
+              <caret line="59" column="48" lean-forward="true" selection-start-line="59" selection-start-column="48" selection-end-line="59" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -146,19 +108,45 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/studio/PianoKeyboardMapper.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/studio/oscillators/SquareWaveOscillator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1200">
-              <caret line="74" column="45" selection-start-line="74" selection-start-column="45" selection-end-line="74" selection-end-column="45" />
+            <state relative-caret-position="220">
+              <caret line="11" column="44" lean-forward="true" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+              <folding>
+                <element signature="e#186#187#0" expanded="true" />
+                <element signature="e#220#221#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/studio/instruments/MusicalInstrument.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ui/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="26" column="9" lean-forward="true" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
+            <state relative-caret-position="150">
+              <caret line="183" column="29" lean-forward="true" selection-start-line="183" selection-start-column="29" selection-end-line="183" selection-end-column="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/studio/instruments/MusicalInstrumentFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="160">
+              <caret line="22" column="70" selection-start-line="22" selection-start-column="70" selection-end-line="22" selection-end-column="70" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/studio/oscillators/SineWaveOscillator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+              <folding>
+                <element signature="e#182#183#0" expanded="true" />
+                <element signature="e#216#217#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -208,7 +196,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/instruments/sine-synth.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/instruments/square-synth.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/instruments/triangle-synth.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/studio/oscillators/WaveOscillator.java" />
         <option value="$PROJECT_DIR$/src/main/java/studio/PianoKeyboardMapper.java" />
         <option value="$PROJECT_DIR$/src/main/resources/styles/piano.css" />
         <option value="$PROJECT_DIR$/pom.xml" />
@@ -221,6 +208,7 @@
         <option value="$PROJECT_DIR$/src/main/java/studio/oscillators/SawWaveOscillator.java" />
         <option value="$PROJECT_DIR$/src/main/java/ui/MainController.java" />
         <option value="$PROJECT_DIR$/src/main/java/studio/instruments/MusicalInstrumentFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/studio/oscillators/WaveOscillator.java" />
       </list>
     </option>
   </component>
@@ -360,7 +348,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544111008171" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544118623859" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -412,12 +400,12 @@
       <workItem from="1544088803857" duration="568000" />
       <workItem from="1544101178916" duration="3101000" />
       <workItem from="1544104823069" duration="3720000" />
-      <workItem from="1544109813922" duration="971000" />
+      <workItem from="1544109813922" duration="6819000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43958000" />
+    <option name="totallyTimeSpent" value="49806000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -486,6 +474,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="16" />
+          <folding>
+            <element signature="e#95#96#0" expanded="true" />
+            <element signature="e#118#119#0" expanded="true" />
+            <element signature="e#161#162#0" expanded="true" />
+            <element signature="e#191#192#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -493,13 +487,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="40">
           <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/studio/oscillators/SineWaveOscillator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -525,13 +512,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1040">
           <caret line="52" column="26" selection-start-line="52" selection-start-column="26" selection-end-line="52" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/studio/oscillators/SquareWaveOscillator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="53" selection-start-line="12" selection-start-column="53" selection-end-line="12" selection-end-column="53" />
         </state>
       </provider>
     </entry>
@@ -573,13 +553,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/studio/oscillators/TriangleWaveOscillator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="15" selection-start-line="6" selection-start-column="15" selection-end-line="6" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -601,27 +574,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/studio/oscillators/WaveOscillator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/studio/oscillators/TriangleWaveOscillator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="57" column="9" lean-forward="true" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="100">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ui/MainController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/studio/oscillators/SineWaveOscillator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="31" column="9" lean-forward="true" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+        <state relative-caret-position="100">
+          <caret line="5" column="11" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="11" />
+          <folding>
+            <element signature="e#182#183#0" expanded="true" />
+            <element signature="e#216#217#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/studio/instruments/MusicalInstrumentFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="27" column="68" lean-forward="true" selection-start-line="27" selection-start-column="68" selection-end-line="27" selection-end-column="68" />
+        <state relative-caret-position="160">
+          <caret line="22" column="70" selection-start-line="22" selection-start-column="70" selection-end-line="22" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ui/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="183" column="29" lean-forward="true" selection-start-line="183" selection-start-column="29" selection-end-line="183" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/studio/oscillators/SquareWaveOscillator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="11" column="44" lean-forward="true" selection-start-line="11" selection-start-column="44" selection-end-line="11" selection-end-column="44" />
+          <folding>
+            <element signature="e#186#187#0" expanded="true" />
+            <element signature="e#220#221#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/studio/oscillators/WaveOscillator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="59" column="48" lean-forward="true" selection-start-line="59" selection-start-column="48" selection-end-line="59" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

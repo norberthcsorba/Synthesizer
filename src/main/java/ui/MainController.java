@@ -41,7 +41,6 @@ public class MainController {
     private Button btn_browseInstrument, btn_saveInstrument;
 
     public void initialize() {
-        instrument = MusicalInstrumentFactory.createFromBlueprint(new File("src/main/resources/instruments/sine-synth.xml"));
         keyboardMapper = new PianoKeyboardMapper(new File("src/main/resources/piano-keyboard-mapping.xml"));
         initPianoView();
         initInstrumentPane();
@@ -73,6 +72,10 @@ public class MainController {
         ObservableList<MusicalInstrumentFactory.Blueprint> observableList = FXCollections.observableArrayList();
         observableList.addAll(availableInstruments);
         combo_availableInstruments.setItems(observableList);
+        if(availableInstruments.size() > 0){
+            combo_availableInstruments.setValue(availableInstruments.get(0));
+            handleOnChange_ComboAvailableInstruments();
+        }
     }
 
     private void initEnvelopeSubPane() {

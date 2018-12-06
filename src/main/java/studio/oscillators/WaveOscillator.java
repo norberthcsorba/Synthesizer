@@ -47,15 +47,20 @@ public abstract class WaveOscillator extends Thread {
         return convertToByteAudioBuffer(buffer);
     }
 
+    private float denormalizeSample(float sample){
+        return (float) (Math.pow(2, audioFormat.getSampleSizeInBits()-1)-1) * sample;
+    }
+
     private byte[] convertToByteAudioBuffer(float[] floatBuffer){
         int sampleRate = (int) audioFormat.getSampleRate();
         int byteDepth = audioFormat.getSampleSizeInBits()/8;
         byte[] byteBuffer = new byte[sampleRate * byteDepth];
         for(int i=0,j=0; i < floatBuffer.length; i++, j+=2){
-            int sample = Float.floatToIntBits(floatBuffer[i]);
-            byteBuffer[i] = (byte)(sample >>> 24);
-            byteBuffer[i+1] = (byte)(sample >>> 16);
+            int sample = (int) denormalizeSample(floatBuffer[i]);
+            byteBuffer[j] = (byte)((sample >> 8) & 0xff);
+            byteBuffer[j+1] = (byte)(sample & 0xff);
         }
+
         return byteBuffer;
     }
 
