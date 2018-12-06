@@ -1,5 +1,6 @@
 package studio.instruments;
 
+import lombok.Getter;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
@@ -12,11 +13,13 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MusicalInstrumentFactory {
 
     public static MusicalInstrument createFromBlueprint(File xmlBlueprintFile) {
-        MusicalInstrumentBlueprint blueprint = parseXmlFile(xmlBlueprintFile);
+        Blueprint blueprint = parseXmlBlueprintFile(xmlBlueprintFile);
         AudioFormat format = new AudioFormat(44100, 16, 1, true, false);
         WaveOscillator[] oscillators = new WaveOscillator[blueprint.polyphony];
         for (int i = 0; i < oscillators.length; i++) {
@@ -28,7 +31,7 @@ public class MusicalInstrumentFactory {
                     oscillators[i] = new SquareWaveOscillator(format);
                     break;
                 case "triangle":
-                    oscillators[i] = new TraingleWaveOscillator(format);
+                    oscillators[i] = new TriangleWaveOscillator(format);
                     break;
                 case"saw":
                     oscillators[i] = new SawWaveOscillator(format);
@@ -38,9 +41,22 @@ public class MusicalInstrumentFactory {
 
     }
 
-    private static MusicalInstrumentBlueprint parseXmlFile(File xmlBlueprintFile) {
+    public static List<Blueprint> getAvailableInstruments(){
+        List<Blueprint> availableInstruments = new ArrayList<>();
+        File instrumentsFolder = new File("src/main/resources/instruments");
+        for(File file : instrumentsFolder.listFiles()){
+            Blueprint blueprint = parseXmlBlueprintFile(file);
+            if(blueprint != null){
+                availableInstruments.add(blueprint);
+            }
+        }
+        return availableInstruments;
+    }
+
+    private static Blueprint parseXmlBlueprintFile(File xmlBlueprintFile) {
         try {
-            MusicalInstrumentBlueprint blueprint = new MusicalInstrumentBlueprint();
+            Blueprint blueprint = new Blueprint();
+            blueprint.filePath = xmlBlueprintFile.getPath();
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document doc = documentBuilder.parse(xmlBlueprintFile);
@@ -68,9 +84,11 @@ public class MusicalInstrumentFactory {
         }
     }
 
-    private static class MusicalInstrumentBlueprint {
+    @Getter
+    public static class Blueprint {
         private String name;
         private String oscType;
         private byte polyphony;
+        private String filePath;
     }
 }

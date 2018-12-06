@@ -10,9 +10,9 @@ public class SawWaveOscillator extends WaveOscillator {
 
     @Override
     protected float generateSample(float dT) {
-        int sample = 0;
+        float sample = 0;
         for(int n = 1; n <=50; n++){
-            sample -= (Math.sin(n * getPitch() * 2 * Math.PI * dT));
+            sample += -(Math.sin(n * getPitch() * 2 * Math.PI * dT))/n;
         }
         return sample;
     }

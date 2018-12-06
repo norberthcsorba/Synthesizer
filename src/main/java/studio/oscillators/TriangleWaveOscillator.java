@@ -2,9 +2,9 @@ package studio.oscillators;
 
 import javax.sound.sampled.AudioFormat;
 
-public class TraingleWaveOscillator extends WaveOscillator {
+public class TriangleWaveOscillator extends WaveOscillator {
 
-    public TraingleWaveOscillator(AudioFormat audioFormat){
+    public TriangleWaveOscillator(AudioFormat audioFormat){
         super(audioFormat);
     }
 

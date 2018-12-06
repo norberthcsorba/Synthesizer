@@ -1,0 +1,7 @@
+.piano-key.natural{
+    -fx-fill: white;
+    -fx-stroke: black;
+}
+.piano-key.pressed{
+    -fx-fill: #ea7b1d;
+}

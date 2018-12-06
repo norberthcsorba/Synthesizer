@@ -1,0 +1,62 @@
+.root{
+    -fx-background-color: #1a1a1a;
+}
+.synth-pane{
+    -fx-background-color: #ea7b1d;
+    -fx-pref-height: 350;
+}
+#hbox_pianoPane{
+    -fx-pref-height: 200;
+}
+
+.heading{
+    -fx-font-size: 25;
+    -fx-text-fill: black;
+}
+.separator .line{
+    -fx-border-color: #1a1a1a;
+}
+VBox{
+    -fx-alignment: center;
+}
+Label{
+    -fx-font-weight: bold;
+}
+.chart .chart-plot-background{
+    -fx-background-color: #1a1a1a;
+}
+.chart-horizontal-grid-lines, .chart .chart-horizontal-zero-line, .chart-vertical-zero-line{
+    -fx-stroke: #ea7b1d;
+    -fx-fill: #ea7b1d;
+}
+.chart .axis-tick-mark,
+.chart .axis-minor-tick-mark,
+.chart .axis-label,
+.chart .axis:left .text{
+    -fx-stroke: white;
+    -fx-fill: white;
+}
+
+ComboBox, Button{
+    -fx-background-color: #1a1a1a;
+    -fx-text-fill: white;
+}
+
+#combo_availableInstruments,
+#btn_browseInstrument,
+#btn_saveInstrument {
+    -fx-background-radius: 0;
+    -fx-border-width: 1;
+    -fx-border-color: gray;
+    -fx-text-fill: white;
+}
+#combo_availableInstruments .text{
+    -fx-fill: white;
+}
+.combo-box-popup .list-view,
+.combo-box-popup .list-cell{
+    -fx-background-color: #1a1a1a;
+}
+.combo-box-popup .list-cell:hover{
+    -fx-background-color: #454545;
+}

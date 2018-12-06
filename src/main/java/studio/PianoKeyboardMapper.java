@@ -68,11 +68,11 @@ public class PianoKeyboardMapper {
 
     @Getter
     public enum KeyLayout {
-        NATURAL("M0,0 L70,0 L70,400 L0,400 z", "natural"),
-        NATURAL_LEFT("M0,0 L50,0 L50,230 L70,230 L70,400 L0,400 z", "natural"),
-        NATURAL_MIDDLE("M20,0 L50,0 L50,230 L70,230 L70,400 L0,400 L0,230 L20,230 z", "natural"),
-        NATURAL_RIGHT("M20,0 L70,0 L70,400 L0,400 L0,230 L20,230 z", "natural"),
-        ALTERED("M0,0 L40,0 L40,230 L0,230 L0,0", "altered");
+        NATURAL("M0,0 L17,0 L17,100 L0,100 z", "natural"),
+        NATURAL_LEFT("M0,0 L12,0 L12,57 L17,57 L17,100 L0,100 z", "natural"),
+        NATURAL_MIDDLE("M5,0 L12,0 L12,57 L17,57 L17,100 L0,100 L0,57 L5,57 z", "natural"),
+        NATURAL_RIGHT("M5,0 L17,0 L17,100 L0,100 L0,57 L5,57 z", "natural"),
+        ALTERED("M0,0 L10,0 L10,57 L0,57 L0,0", "altered");
 
         private String svgPath;
         private String cssClass;

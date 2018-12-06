@@ -26,13 +26,19 @@
             <artifactId>javafx-fxml</artifactId>
             <version>11</version>
         </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.4</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>se.europeanspallationsource</groupId>
+            <artifactId>javafx.control.controlled-knobs</artifactId>
+            <version>1.0.4</version>
+        </dependency>
+        <!-- Thanks for using https://jar-download.com -->
+
     </dependencies>
 
 </project>

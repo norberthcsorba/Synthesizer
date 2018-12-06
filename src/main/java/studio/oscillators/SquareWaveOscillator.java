@@ -10,6 +10,6 @@ public class SquareWaveOscillator extends WaveOscillator {
 
     @Override
     protected float generateSample(float dT) {
-        return Math.sin(getPitch() * 2 * Math.PI) > 0 ? 1 : 1;
+        return Math.sin(getPitch() * 2 * Math.PI * dT) > 0 ? 1 : -1;
     }
 }
