@@ -4,7 +4,7 @@ import javax.sound.sampled.AudioFormat;
 
 public class SquareWaveOscillator extends WaveOscillator {
 
-    public SquareWaveOscillator(AudioFormat audioFormat){
+    public SquareWaveOscillator(AudioFormat audioFormat) {
         super(audioFormat);
     }
 

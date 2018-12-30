@@ -1,4 +1,4 @@
-package studio;
+package ui.utils;
 
 import lombok.Getter;
 import org.w3c.dom.Document;
@@ -20,20 +20,20 @@ public class PianoKeyboardMapper {
     private List<KeyMapping> mappingList = new ArrayList<>();
     private Map<String, KeyMapping> mappingTable = new HashMap<>();
 
-    public PianoKeyboardMapper(File xmlMappingFile){
+    public PianoKeyboardMapper(File xmlMappingFile) {
         loadFromFile(xmlMappingFile);
     }
 
-    private void loadFromFile(File xmlMappingFile){
-        try{
+    private void loadFromFile(File xmlMappingFile) {
+        try {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
             Document doc = documentBuilder.parse(xmlMappingFile);
             doc.getDocumentElement().normalize();
             NodeList mappings = doc.getElementsByTagName("mapping");
-            for(int i = 0 ; i < mappings.getLength(); i++){
+            for (int i = 0; i < mappings.getLength(); i++) {
                 Node node = mappings.item(i);
-                if(node.getNodeType() == Node.ELEMENT_NODE){
+                if (node.getNodeType() == Node.ELEMENT_NODE) {
                     Element mapping = (Element) node;
                     String note = mapping.getAttribute("note");
                     float pitch = Float.parseFloat(mapping.getAttribute("pitch"));
@@ -41,12 +41,12 @@ public class PianoKeyboardMapper {
                     KeyLayout layout = KeyLayout.valueOf(mapping.getAttribute("layout"));
                     KeyMapping keyMapping = new KeyMapping(note, pitch, key, layout);
                     this.mappingList.add(keyMapping);
-                    if(!key.equals("")){
+                    if (!key.equals("")) {
                         this.mappingTable.put(key, keyMapping);
                     }
                 }
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
@@ -77,7 +77,7 @@ public class PianoKeyboardMapper {
         private String svgPath;
         private String cssClass;
 
-        KeyLayout(String svgPath, String cssClass){
+        KeyLayout(String svgPath, String cssClass) {
             this.svgPath = svgPath;
             this.cssClass = cssClass;
         }

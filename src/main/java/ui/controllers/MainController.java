@@ -1,13 +1,13 @@
-package ui;
+package ui.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -16,9 +16,12 @@ import javafx.scene.shape.SVGPath;
 import javafx.util.StringConverter;
 import se.europeanspallationsource.javafx.control.knobs.Knob;
 import se.europeanspallationsource.javafx.control.knobs.KnobBuilder;
-import studio.PianoKeyboardMapper;
 import studio.instruments.IMusicalInstrument;
 import studio.instruments.MusicalInstrumentFactory;
+import ui.utils.PianoKeyboardMapper;
+import utils.Constants;
+import utils.exceptions.OscillatorInstantiationException;
+import utils.exceptions.XmlParseException;
 
 import java.io.File;
 import java.util.List;
@@ -26,6 +29,7 @@ import java.util.List;
 public class MainController {
     private IMusicalInstrument instrument;
     private PianoKeyboardMapper keyboardMapper;
+    private MusicalInstrumentFactory instrumentFactory;
     private Scene crtScene;
     @FXML
     private HBox hbox_pianoKeyboard;
@@ -41,9 +45,14 @@ public class MainController {
     private Button btn_browseInstrument, btn_saveInstrument;
 
     public void initialize() {
-        keyboardMapper = new PianoKeyboardMapper(new File("src/main/resources/piano-keyboard-mapping.xml"));
-        initPianoView();
-        initInstrumentPane();
+        try {
+            keyboardMapper = new PianoKeyboardMapper(new File(Constants.PIANO_KEYBOARD_MAPPING_FILE_PATH));
+            instrumentFactory = new MusicalInstrumentFactory();
+            initPianoView();
+            initInstrumentPane();
+        } catch (XmlParseException ex) {
+            new Alert(Alert.AlertType.ERROR, ex.getMessage()).show();
+        }
     }
 
     private void initInstrumentPane() {
@@ -52,11 +61,11 @@ public class MainController {
     }
 
     private void initChooseInstrumentSubPane() {
-        List<MusicalInstrumentFactory.Blueprint> availableInstruments = MusicalInstrumentFactory.getAvailableInstruments();
+        List<MusicalInstrumentFactory.Blueprint> availableInstruments = instrumentFactory.getAvailableInstruments();
         combo_availableInstruments.setConverter(new StringConverter<MusicalInstrumentFactory.Blueprint>() {
             @Override
             public String toString(MusicalInstrumentFactory.Blueprint object) {
-                if(object != null){
+                if (object != null) {
                     return object.getName();
                 }
                 return null;
@@ -72,7 +81,7 @@ public class MainController {
         ObservableList<MusicalInstrumentFactory.Blueprint> observableList = FXCollections.observableArrayList();
         observableList.addAll(availableInstruments);
         combo_availableInstruments.setItems(observableList);
-        if(availableInstruments.size() > 0){
+        if (availableInstruments.size() > 0) {
             combo_availableInstruments.setValue(availableInstruments.get(0));
             handleOnChange_ComboAvailableInstruments();
         }
@@ -185,12 +194,14 @@ public class MainController {
     }
 
     @FXML
-    private void handleOnChange_ComboAvailableInstruments(){
+    private void handleOnChange_ComboAvailableInstruments() {
         MusicalInstrumentFactory.Blueprint instrumentToLoad = combo_availableInstruments.getValue();
-        if(instrumentToLoad != null){
-            System.out.println(instrumentToLoad.getFilePath());
-            File xmlConfigFile = new File(instrumentToLoad.getFilePath());
-            this.instrument = MusicalInstrumentFactory.createFromBlueprint(xmlConfigFile);
+        if (instrumentToLoad != null) {
+            try {
+                this.instrument = instrumentFactory.createFromBlueprint(instrumentToLoad);
+            } catch (OscillatorInstantiationException ex) {
+                new Alert(Alert.AlertType.ERROR, ex.getMessage()).show();
+            }
         }
     }
 

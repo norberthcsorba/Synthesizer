@@ -4,7 +4,7 @@ import javax.sound.sampled.AudioFormat;
 
 public class TriangleWaveOscillator extends WaveOscillator {
 
-    public TriangleWaveOscillator(AudioFormat audioFormat){
+    public TriangleWaveOscillator(AudioFormat audioFormat) {
         super(audioFormat);
     }
 
