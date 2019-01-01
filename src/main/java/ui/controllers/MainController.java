@@ -2,23 +2,21 @@ package ui.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.chart.AreaChart;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Stop;
 import javafx.scene.shape.SVGPath;
 import javafx.util.StringConverter;
-import se.europeanspallationsource.javafx.control.knobs.Knob;
-import se.europeanspallationsource.javafx.control.knobs.KnobBuilder;
 import studio.instrument.EnvelopeShaper;
 import studio.instrument.IMusicalInstrument;
 import studio.instrument.MusicalInstrumentFactory;
+import ui.utils.EnvelopeShaperStringConverter;
 import ui.utils.PianoKeyboardMapper;
 import utils.Constants;
 import utils.exceptions.OscillatorInstantiationException;
@@ -26,7 +24,6 @@ import utils.exceptions.XmlParseException;
 
 import java.io.File;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class MainController {
     private IMusicalInstrument instrument;
@@ -36,35 +33,31 @@ public class MainController {
     @FXML
     private HBox hbox_pianoKeyboard;
     @FXML
-    private HBox hbox_instrument;
-    @FXML
-    private VBox vbox_attackControl, vbox_decayControl, vbox_sustainControl, vbox_releaseControl;
-    @FXML
-    private AreaChart chart_envelope;
-    @FXML
     private ComboBox<MusicalInstrumentFactory.Blueprint> combo_availableInstruments;
     @FXML
-    private Button btn_browseInstrument, btn_saveInstrument;
+    private Slider slider_attackTime, slider_decayTime, slider_sustainAmp, slider_releaseTime;
+    @FXML
+    private TextField field_attackTime, field_decayTime, field_sustainAmp, field_releaseTime;
 
     public void initialize() {
         try {
             keyboardMapper = new PianoKeyboardMapper(new File(Constants.PIANO_KEYBOARD_MAPPING_FILE_PATH));
             instrumentFactory = new MusicalInstrumentFactory();
             initPianoView();
-            initInstrumentPane();
+            initPedalboard();
         } catch (XmlParseException ex) {
             new Alert(Alert.AlertType.ERROR, ex.getMessage()).show();
         }
     }
 
-    private void initInstrumentPane() {
-        initChooseInstrumentSubPane();
-        initEnvelopeSubPane();
+    private void initPedalboard() {
+        initInstrumentPedal();
+        initEnvelopeShaperPedal();
     }
 
-    private void initChooseInstrumentSubPane() {
+    private void initInstrumentPedal() {
         List<MusicalInstrumentFactory.Blueprint> availableInstruments = instrumentFactory.getAvailableInstruments();
-        combo_availableInstruments.setConverter(new StringConverter<MusicalInstrumentFactory.Blueprint>() {
+        combo_availableInstruments.setConverter(new StringConverter<>() {
             @Override
             public String toString(MusicalInstrumentFactory.Blueprint object) {
                 if (object != null) {
@@ -89,37 +82,23 @@ public class MainController {
         }
     }
 
-    private void initEnvelopeSubPane() {
-        Knob attackKnob = newKnob((short) 0, (short) 500, EnvelopeShaper.getAttackTime(), "ms", EnvelopeShaper::setAttackTime);
-        Knob decayKnob = newKnob((short) 0, (short) 500, EnvelopeShaper.getDecayTime(), "ms", EnvelopeShaper::setDecayTime);
-        Knob sustainKnob = newKnob((short) -10, (short) -1, (short) EnvelopeShaper.getSustainAmp(), "db", EnvelopeShaper::setSustainAmp);
-        Knob releaseKnob = newKnob((short) 0, (short) 500, EnvelopeShaper.getReleaseTime(), "ms", EnvelopeShaper::setReleaseTime);
-        vbox_attackControl.getChildren().add(attackKnob);
-        vbox_decayControl.getChildren().add(decayKnob);
-        vbox_sustainControl.getChildren().add(sustainKnob);
-        vbox_releaseControl.getChildren().add(releaseKnob);
-    }
+    private void initEnvelopeShaperPedal() {
+        field_attackTime.textProperty().bindBidirectional(
+                slider_attackTime.valueProperty(), new EnvelopeShaperStringConverter(slider_attackTime));
+        field_decayTime.textProperty().bindBidirectional(
+                slider_decayTime.valueProperty(), new EnvelopeShaperStringConverter(slider_decayTime));
+        field_sustainAmp.textProperty().bindBidirectional(
+                slider_sustainAmp.valueProperty(), new EnvelopeShaperStringConverter(slider_sustainAmp));
+        field_releaseTime.textProperty().bindBidirectional(
+                slider_releaseTime.valueProperty(), new EnvelopeShaperStringConverter(slider_releaseTime));
 
-    private Knob newKnob(short minValue, short maxValue, short initialValue, String unit, Consumer<Short> callback) {
-        return KnobBuilder.create()
-                .gradientStops(new Stop(0, Color.BLACK))
-                .currentValueColor(Color.GREEN)
-                .currentValue(initialValue)
-                .targetValue(initialValue)
-                .minValue(minValue)
-                .maxValue(maxValue)
-                .decimals(0)
-                .onTargetSet(event -> {
-                    Knob knob1 = (Knob) event.getSource();
-                    knob1.setCurrentValue(knob1.getTargetValue());
-                    callback.accept((short) knob1.getTargetValue());
-                })
-                .unit(unit)
-                .build();
+        slider_attackTime.valueProperty().addListener((a,b,c) -> EnvelopeShaper.setAttackTime((short) slider_attackTime.getValue()));
+        slider_decayTime.valueProperty().addListener((a,b,c) -> EnvelopeShaper.setDecayTime((short) slider_decayTime.getValue()));
+        slider_sustainAmp.valueProperty().addListener((a,b,c) -> EnvelopeShaper.setSustainAmp((short) slider_sustainAmp.getValue()));
+        slider_releaseTime.valueProperty().addListener((a,b,c) -> EnvelopeShaper.setReleaseTime((short) slider_releaseTime.getValue()));
     }
 
     private void initPianoView() {
-        hbox_pianoKeyboard.getStyleClass().add("piano-keyboard");
         double translateX = 0;
         for (PianoKeyboardMapper.KeyMapping note : keyboardMapper.getMappingList()) {
             SVGPath pianoKey = new SVGPath();
@@ -133,6 +112,12 @@ public class MainController {
                 translateX -= 5;
             }
             hbox_pianoKeyboard.getChildren().add(pianoKey);
+            hbox_pianoKeyboard.getParent().scaleXProperty().set(0.855);
+            hbox_pianoKeyboard.getParent().setTranslateX(-102);
+            hbox_pianoKeyboard.setScaleX(1.4);
+            hbox_pianoKeyboard.setScaleY(1.22);
+            hbox_pianoKeyboard.setTranslateX(250);
+            hbox_pianoKeyboard.setTranslateY(20);
         }
     }
 

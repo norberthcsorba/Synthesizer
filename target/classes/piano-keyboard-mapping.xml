@@ -1,90 +1,90 @@
 <mappings>
-        <mapping note="A0" pitch="27.50000" key="" layout="NATURAL_LEFT"/>
-        <mapping note="Bb0" pitch="29.13524" key="" layout="ALTERED"/>
-        <mapping note="B0"  pitch="30.86771" key="" layout="NATURAL_RIGHT"/>
-        <mapping note="C1"  pitch="32.70320" key="" layout="NATURAL_LEFT"/>
-        <mapping note="C#1" pitch="34.64783" key="" layout="ALTERED"/>
-        <mapping note="D1"  pitch="36.70810" key="" layout="NATURAL_MIDDLE"/>
-        <mapping note="Eb1" pitch="38.89087" key="" layout="ALTERED"/>
-        <mapping note="E1"  pitch="41.20344" key="" layout="NATURAL_RIGHT"/>
-        <mapping note="F1"  pitch="43.65353" key="" layout="NATURAL_LEFT"/>
-        <mapping note="F#1" pitch="46.24930" key="" layout="ALTERED"/>
-        <mapping note="G1"  pitch="48.99943" key="" layout="NATURAL_MIDDLE"/>
-        <mapping note="Ab1" pitch="51.91309" key="" layout="ALTERED"/>
-        <mapping note="A1"  pitch="55.00000" key="" layout="NATURAL_MIDDLE"/>
-        <mapping note="Bb1" pitch="58.27047" key="" layout="ALTERED"/>
-        <mapping note="B1"  pitch="61.73541" key="" layout="NATURAL_RIGHT"/>
-        <mapping note="C2"  pitch="65.40639" key="" layout="NATURAL_LEFT"/>
-        <mapping note="C#2" pitch="69.29566" key="" layout="ALTERED"/>
-        <mapping note="D2"  pitch="73.41619" key="" layout="NATURAL_MIDDLE"/>
-        <mapping note="Eb2" pitch="77.78175" key="" layout="ALTERED"/>
-        <mapping note="E2"  pitch="82.40689" key="" layout="NATURAL_RIGHT"/>
-        <mapping note="F2"  pitch="87.30706" key="" layout="NATURAL_LEFT"/>
-        <mapping note="F#2" pitch="92.49861" key="" layout="ALTERED"/>
-        <mapping note="G2"  pitch="97.99886" key="" layout="NATURAL_MIDDLE"/>
-        <mapping note="Ab2" pitch="103.8262" key="" layout="ALTERED"/>
-        <mapping note="A2"  pitch="110.0000" key="" layout="NATURAL_MIDDLE"/>
-        <mapping note="Bb2" pitch="116.5409" key="" layout="ALTERED"/>
-        <mapping note="B2 " pitch="123.4708" key="" layout="NATURAL_RIGHT"/>
-        <mapping note="C3 " pitch="130.8128" key="z" layout="NATURAL_LEFT"/>
-        <mapping note="C#3" pitch="138.5913" key="s" layout="ALTERED"/>
-        <mapping note="D3 " pitch="146.8324" key="x" layout="NATURAL_MIDDLE"/>
-        <mapping note="Eb3" pitch="155.5635" key="d" layout="ALTERED"/>
-        <mapping note="E3 " pitch="164.8138" key="c" layout="NATURAL_RIGHT"/>
-        <mapping note="F3 " pitch="174.6141" key="v" layout="NATURAL_LEFT"/>
-        <mapping note="F#3" pitch="184.9972" key="g" layout="ALTERED"/>
-        <mapping note="G3 " pitch="195.9977" key="b" layout="NATURAL_MIDDLE"/>
-        <mapping note="Ab3" pitch="207.6523" key="h" layout="ALTERED"/>
-        <mapping note="A3 " pitch="220.0000" key="n" layout="NATURAL_MIDDLE"/>
-        <mapping note="Bb3" pitch="233.0819" key="j" layout="ALTERED"/>
-        <mapping note="B3 " pitch="246.9417" key="m" layout="NATURAL_RIGHT"/>
-        <mapping note="C4 " pitch="261.6256" key="q" layout="NATURAL_LEFT"/>
-        <mapping note="C#4" pitch="277.1826" key="2" layout="ALTERED"/>
-        <mapping note="D4 " pitch="293.6648" key="w" layout="NATURAL_MIDDLE"/>
-        <mapping note="Eb4" pitch="311.1270" key="3" layout="ALTERED"/>
-        <mapping note="E4 " pitch="329.6276" key="e" layout="NATURAL_RIGHT"/>
-        <mapping note="F4 " pitch="349.2282" key="r" layout="NATURAL_LEFT"/>
-        <mapping note="F#4" pitch="369.9944" key="5" layout="ALTERED"/>
-        <mapping note="G4 " pitch="391.9954" key="t" layout="NATURAL_MIDDLE"/>
-        <mapping note="Ab4" pitch="415.3047" key="6" layout="ALTERED"/>
-        <mapping note="A4 " pitch="440.0000" key="y" layout="NATURAL_MIDDLE"/>
-        <mapping note="Bb4" pitch="466.1638" key="7" layout="ALTERED"/>
-        <mapping note="B4 " pitch="493.8833" key="u" layout="NATURAL_RIGHT"/>
-        <mapping note="C5 " pitch="523.2511" key="i" layout="NATURAL_LEFT"/>
-        <mapping note="C#5" pitch="554.3653" key="9" layout="ALTERED"/>
-        <mapping note="D5 " pitch="587.3295" key="o" layout="NATURAL_MIDDLE"/>
-        <mapping note="Eb5" pitch="622.2540" key="0" layout="ALTERED"/>
-        <mapping note="E5 " pitch="659.2551" key="p" layout="NATURAL_RIGHT"/>
-        <mapping note="F5 " pitch="698.4565" key="[" layout="NATURAL_LEFT"/>
-        <mapping note="F#5" pitch="739.9888" key="=" layout="ALTERED"/>
-        <mapping note="G5 " pitch="783.9909" key="]" layout="NATURAL_MIDDLE"/>
-        <mapping note="Ab5" pitch="830.6094" key="" layout="ALTERED"/>
-        <mapping note="A5 " pitch="880.0000" key="" layout="NATURAL_MIDDLE"/>
-        <mapping note="Bb5" pitch="932.3275" key="" layout="ALTERED"/>
-        <mapping note="B5 " pitch="987.7667" key="" layout="NATURAL_RIGHT"/>
-        <mapping note="C6 " pitch="1046.502" key="" layout="NATURAL_LEFT"/>
-        <mapping note="C#6" pitch="1108.731" key="" layout="ALTERED"/>
-        <mapping note="D6 " pitch="1174.659" key="" layout="NATURAL_MIDDLE"/>
-        <mapping note="Eb6" pitch="1244.508" key="" layout="ALTERED"/>
-        <mapping note="E6 " pitch="1318.510" key="" layout="NATURAL_RIGHT"/>
-        <mapping note="F6 " pitch="1396.913" key="" layout="NATURAL_LEFT"/>
-        <mapping note="F#6" pitch="1479.978" key="" layout="ALTERED"/>
-        <mapping note="G6 " pitch="1567.982" key="" layout="NATURAL_MIDDLE"/>
-        <mapping note="Ab6" pitch="1661.219" key="" layout="ALTERED"/>
-        <mapping note="A6 " pitch="1760.000" key="" layout="NATURAL_MIDDLE"/>
-        <mapping note="Bb6" pitch="1864.655" key="" layout="ALTERED"/>
-        <mapping note="B6 " pitch="1975.533" key="" layout="NATURAL_RIGHT"/>
-        <mapping note="C7 " pitch="2093.005" key="" layout="NATURAL_LEFT"/>
-        <mapping note="C#7" pitch="2217.461" key="" layout="ALTERED"/>
-        <mapping note="D7 " pitch="2349.318" key="" layout="NATURAL_MIDDLE"/>
-        <mapping note="Eb7" pitch="2489.016" key="" layout="ALTERED"/>
-        <mapping note="E7 " pitch="2637.020" key="" layout="NATURAL_RIGHT"/>
-        <mapping note="F7 " pitch="2793.826" key="" layout="NATURAL_LEFT"/>
-        <mapping note="F#7" pitch="2959.955" key="" layout="ALTERED"/>
-        <mapping note="G7 " pitch="3135.963" key="" layout="NATURAL_MIDDLE"/>
-        <mapping note="Ab7" pitch="3322.438" key="" layout="ALTERED"/>
-        <mapping note="A7 " pitch="3520.000" key="" layout="NATURAL_MIDDLE"/>
-        <mapping note="Bb7" pitch="3729.310" key="" layout="ALTERED"/>
-        <mapping note="B7 " pitch="3951.066" key="" layout="NATURAL_RIGHT"/>
-        <mapping note="C8 " pitch="4186.009" key="" layout="NATURAL"/>
+    <mapping note="A0" pitch="27.50000" key="" layout="NATURAL_LEFT"/>
+    <mapping note="Bb0" pitch="29.13524" key="" layout="ALTERED"/>
+    <mapping note="B0" pitch="30.86771" key="" layout="NATURAL_RIGHT"/>
+    <mapping note="C1" pitch="32.70320" key="" layout="NATURAL_LEFT"/>
+    <mapping note="C#1" pitch="34.64783" key="" layout="ALTERED"/>
+    <mapping note="D1" pitch="36.70810" key="" layout="NATURAL_MIDDLE"/>
+    <mapping note="Eb1" pitch="38.89087" key="" layout="ALTERED"/>
+    <mapping note="E1" pitch="41.20344" key="" layout="NATURAL_RIGHT"/>
+    <mapping note="F1" pitch="43.65353" key="" layout="NATURAL_LEFT"/>
+    <mapping note="F#1" pitch="46.24930" key="" layout="ALTERED"/>
+    <mapping note="G1" pitch="48.99943" key="" layout="NATURAL_MIDDLE"/>
+    <mapping note="Ab1" pitch="51.91309" key="" layout="ALTERED"/>
+    <mapping note="A1" pitch="55.00000" key="" layout="NATURAL_MIDDLE"/>
+    <mapping note="Bb1" pitch="58.27047" key="" layout="ALTERED"/>
+    <mapping note="B1" pitch="61.73541" key="" layout="NATURAL_RIGHT"/>
+    <mapping note="C2" pitch="65.40639" key="" layout="NATURAL_LEFT"/>
+    <mapping note="C#2" pitch="69.29566" key="" layout="ALTERED"/>
+    <mapping note="D2" pitch="73.41619" key="" layout="NATURAL_MIDDLE"/>
+    <mapping note="Eb2" pitch="77.78175" key="" layout="ALTERED"/>
+    <mapping note="E2" pitch="82.40689" key="" layout="NATURAL_RIGHT"/>
+    <mapping note="F2" pitch="87.30706" key="" layout="NATURAL_LEFT"/>
+    <mapping note="F#2" pitch="92.49861" key="" layout="ALTERED"/>
+    <mapping note="G2" pitch="97.99886" key="" layout="NATURAL_MIDDLE"/>
+    <mapping note="Ab2" pitch="103.8262" key="" layout="ALTERED"/>
+    <mapping note="A2" pitch="110.0000" key="" layout="NATURAL_MIDDLE"/>
+    <mapping note="Bb2" pitch="116.5409" key="" layout="ALTERED"/>
+    <mapping note="B2 " pitch="123.4708" key="" layout="NATURAL_RIGHT"/>
+    <mapping note="C3 " pitch="130.8128" key="z" layout="NATURAL_LEFT"/>
+    <mapping note="C#3" pitch="138.5913" key="s" layout="ALTERED"/>
+    <mapping note="D3 " pitch="146.8324" key="x" layout="NATURAL_MIDDLE"/>
+    <mapping note="Eb3" pitch="155.5635" key="d" layout="ALTERED"/>
+    <mapping note="E3 " pitch="164.8138" key="c" layout="NATURAL_RIGHT"/>
+    <mapping note="F3 " pitch="174.6141" key="v" layout="NATURAL_LEFT"/>
+    <mapping note="F#3" pitch="184.9972" key="g" layout="ALTERED"/>
+    <mapping note="G3 " pitch="195.9977" key="b" layout="NATURAL_MIDDLE"/>
+    <mapping note="Ab3" pitch="207.6523" key="h" layout="ALTERED"/>
+    <mapping note="A3 " pitch="220.0000" key="n" layout="NATURAL_MIDDLE"/>
+    <mapping note="Bb3" pitch="233.0819" key="j" layout="ALTERED"/>
+    <mapping note="B3 " pitch="246.9417" key="m" layout="NATURAL_RIGHT"/>
+    <mapping note="C4 " pitch="261.6256" key="q" layout="NATURAL_LEFT"/>
+    <mapping note="C#4" pitch="277.1826" key="2" layout="ALTERED"/>
+    <mapping note="D4 " pitch="293.6648" key="w" layout="NATURAL_MIDDLE"/>
+    <mapping note="Eb4" pitch="311.1270" key="3" layout="ALTERED"/>
+    <mapping note="E4 " pitch="329.6276" key="e" layout="NATURAL_RIGHT"/>
+    <mapping note="F4 " pitch="349.2282" key="r" layout="NATURAL_LEFT"/>
+    <mapping note="F#4" pitch="369.9944" key="5" layout="ALTERED"/>
+    <mapping note="G4 " pitch="391.9954" key="t" layout="NATURAL_MIDDLE"/>
+    <mapping note="Ab4" pitch="415.3047" key="6" layout="ALTERED"/>
+    <mapping note="A4 " pitch="440.0000" key="y" layout="NATURAL_MIDDLE"/>
+    <mapping note="Bb4" pitch="466.1638" key="7" layout="ALTERED"/>
+    <mapping note="B4 " pitch="493.8833" key="u" layout="NATURAL_RIGHT"/>
+    <mapping note="C5 " pitch="523.2511" key="i" layout="NATURAL_LEFT"/>
+    <mapping note="C#5" pitch="554.3653" key="9" layout="ALTERED"/>
+    <mapping note="D5 " pitch="587.3295" key="o" layout="NATURAL_MIDDLE"/>
+    <mapping note="Eb5" pitch="622.2540" key="0" layout="ALTERED"/>
+    <mapping note="E5 " pitch="659.2551" key="p" layout="NATURAL_RIGHT"/>
+    <mapping note="F5 " pitch="698.4565" key="[" layout="NATURAL_LEFT"/>
+    <mapping note="F#5" pitch="739.9888" key="=" layout="ALTERED"/>
+    <mapping note="G5 " pitch="783.9909" key="]" layout="NATURAL_MIDDLE"/>
+    <mapping note="Ab5" pitch="830.6094" key="" layout="ALTERED"/>
+    <mapping note="A5 " pitch="880.0000" key="" layout="NATURAL_MIDDLE"/>
+    <mapping note="Bb5" pitch="932.3275" key="" layout="ALTERED"/>
+    <mapping note="B5 " pitch="987.7667" key="" layout="NATURAL_RIGHT"/>
+    <mapping note="C6 " pitch="1046.502" key="" layout="NATURAL_LEFT"/>
+    <mapping note="C#6" pitch="1108.731" key="" layout="ALTERED"/>
+    <mapping note="D6 " pitch="1174.659" key="" layout="NATURAL_MIDDLE"/>
+    <mapping note="Eb6" pitch="1244.508" key="" layout="ALTERED"/>
+    <mapping note="E6 " pitch="1318.510" key="" layout="NATURAL_RIGHT"/>
+    <mapping note="F6 " pitch="1396.913" key="" layout="NATURAL_LEFT"/>
+    <mapping note="F#6" pitch="1479.978" key="" layout="ALTERED"/>
+    <mapping note="G6 " pitch="1567.982" key="" layout="NATURAL_MIDDLE"/>
+    <mapping note="Ab6" pitch="1661.219" key="" layout="ALTERED"/>
+    <mapping note="A6 " pitch="1760.000" key="" layout="NATURAL_MIDDLE"/>
+    <mapping note="Bb6" pitch="1864.655" key="" layout="ALTERED"/>
+    <mapping note="B6 " pitch="1975.533" key="" layout="NATURAL_RIGHT"/>
+    <mapping note="C7 " pitch="2093.005" key="" layout="NATURAL_LEFT"/>
+    <mapping note="C#7" pitch="2217.461" key="" layout="ALTERED"/>
+    <mapping note="D7 " pitch="2349.318" key="" layout="NATURAL_MIDDLE"/>
+    <mapping note="Eb7" pitch="2489.016" key="" layout="ALTERED"/>
+    <mapping note="E7 " pitch="2637.020" key="" layout="NATURAL_RIGHT"/>
+    <mapping note="F7 " pitch="2793.826" key="" layout="NATURAL_LEFT"/>
+    <mapping note="F#7" pitch="2959.955" key="" layout="ALTERED"/>
+    <mapping note="G7 " pitch="3135.963" key="" layout="NATURAL_MIDDLE"/>
+    <mapping note="Ab7" pitch="3322.438" key="" layout="ALTERED"/>
+    <mapping note="A7 " pitch="3520.000" key="" layout="NATURAL_MIDDLE"/>
+    <mapping note="Bb7" pitch="3729.310" key="" layout="ALTERED"/>
+    <mapping note="B7 " pitch="3951.066" key="" layout="NATURAL_RIGHT"/>
+    <mapping note="C8 " pitch="4186.009" key="" layout="NATURAL"/>
 </mappings>

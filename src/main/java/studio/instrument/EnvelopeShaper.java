@@ -9,11 +9,16 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class EnvelopeShaper {
 
@@ -22,6 +27,7 @@ public class EnvelopeShaper {
     private InstrumentString instrumentString;
     private ExecutorService executor;
     private Future<?> threadHandler;
+    @Getter
     private boolean flag_Attack, flag_Release, flag_Mute;
     @Getter
     @Setter
@@ -31,7 +37,7 @@ public class EnvelopeShaper {
     private static short decayTime = 50;
     @Getter
     @Setter
-    private static float sustainAmp = -4.0f;
+    private static float sustainAmp = -1.0f;
     @Getter
     @Setter
     private static boolean hasDecayAndSustain = true;
@@ -40,7 +46,7 @@ public class EnvelopeShaper {
     private static short releaseTime = 100;
 
     private static final float MAX_AMP = -1.0f;
-    private static final float MIN_AMP = -30.0f;
+    private static final float MIN_AMP = -40.0f;
 
     public EnvelopeShaper(InstrumentString instrumentString, SourceDataLine output) {
         this.instrumentString = instrumentString;
@@ -58,11 +64,14 @@ public class EnvelopeShaper {
             threadHandler.cancel(true);
             if (flag_Release) {
                 flag_Mute = true;
+                System.out.println("set flag_Mute");
             }
             if (flag_Attack) {
                 flag_Release = true;
+                System.out.println("set flag_Release");
             }
         }
+        System.out.println("set flag_Attack");
         flag_Attack = true;
     }
 
@@ -73,13 +82,13 @@ public class EnvelopeShaper {
     public void start() {
         threadHandler = executor.submit(() -> {
             try {
-                //attack();
+                attack();
                 System.out.println("attack finished");
                 if (!hasDecayAndSustain) {
                     instrumentString.setFundamentalPitch(InstrumentString.NULL_PITCH);
                     throw new InterruptedException();
                 }
-                //decay();
+                decay();
                 System.out.println("decay finished");
                 sustain();
                 System.out.println("sustain finished");
@@ -98,11 +107,15 @@ public class EnvelopeShaper {
     }
 
     private void attack() throws InterruptedException {
-        fade(MIN_AMP, MAX_AMP, attackTime, flag_Release);
+        if(attackTime > 0){
+            fadeAmplitude(MIN_AMP, MAX_AMP, attackTime, this::isFlag_Release);
+        }else{
+            gainControl.setValue(MAX_AMP);
+        }
     }
 
     private void decay() throws InterruptedException {
-//        fade(gainControl.getValue(), sustainAmp, decayTime, flag_Release);
+//        fadeAmplitude(gainControl.getValue(), sustainAmp, decayTime, flag_Release);
     }
 
     private void sustain() throws InterruptedException {
@@ -112,10 +125,13 @@ public class EnvelopeShaper {
     }
 
     private void release() throws InterruptedException {
-        //fade(gainControl.getValue(), MIN_AMP, releaseTime, flag_Mute);
+        if(releaseTime > 0) {
+            fadeAmplitude(gainControl.getValue(), MIN_AMP, releaseTime, this::isFlag_Mute);
+        }
     }
 
     private void mute() {
+        gainControl.setValue(MIN_AMP);
         output.flush();
         output.stop();
         output.close();
@@ -125,11 +141,10 @@ public class EnvelopeShaper {
         } catch (LineUnavailableException ex) {
             ex.printStackTrace();
         }
-        gainControl.setValue(MIN_AMP);
         flag_Mute = flag_Release = flag_Attack = false;
     }
 
-    private void fade(float startAmp, float targetAmp, short availableTime, boolean interruptFlag) throws InterruptedException {
+    private void fadeAmplitude(float startAmp, float targetAmp, short availableTime, Supplier<Boolean> interruptFlag) throws InterruptedException {
         final float availableTimeInSamples = availableTime * Constants.nrOfSamplesPerMilis();
         final float linAmpStepPerSample = (targetAmp - startAmp) / availableTimeInSamples;
 
@@ -140,6 +155,8 @@ public class EnvelopeShaper {
         for (float i = (int) startAmp; crtAmpHasNotReachedTarget.test(i); i = incrementCrtAmp.apply(i)) {
             f.put(i, -lin2log(-targetAmp, -startAmp, -i));
         }
+        f.put(targetAmp, -lin2log(-targetAmp, -startAmp, -targetAmp));
+
 
         long deltaSamples;
         long startFramePosition = output.getLongFramePosition();
@@ -148,10 +165,36 @@ public class EnvelopeShaper {
             linCrtAmp = crtAmpHasNotReachedTarget.test(linCrtAmp) ? linCrtAmp : targetAmp;
             float logCrtAmp = f.get((float) Math.round(linCrtAmp));
             gainControl.setValue(logCrtAmp);
-            if (interruptFlag) {
+            if (interruptFlag.get()) {
                 throw new InterruptedException();
             }
         }
+
+//        ReentrantLock lock = new ReentrantLock();
+//        Condition condition = lock.newCondition();
+//        final float linAmpStepPerMilis = (targetAmp - startAmp) / availableTime;
+//        final long startTime = System.currentTimeMillis();
+//        Timer timer = new Timer();
+//        timer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                final long dT = System.currentTimeMillis() - startTime;
+//                float linCrtAmp = startAmp + dT * linAmpStepPerMilis;
+//                linCrtAmp = crtAmpHasNotReachedTarget.test(linCrtAmp) ? linCrtAmp : targetAmp;
+//                System.out.println(linCrtAmp);
+//                float logCrtAmp = f.get((float)Math.round(linCrtAmp));
+//                gainControl.setValue(logCrtAmp);
+//                if(dT > availableTime){
+//                    lock.lock();
+//                    condition.signal();
+//                    lock.unlock();
+//                }
+//            }
+//        },0, 20);
+//        lock.lock();
+//        condition.await();
+//        lock.unlock();
+//        timer.cancel();
     }
 
 

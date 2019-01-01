@@ -1,0 +1,147 @@
+/*==============================*/
+/*==============================*/
+/*==============================*/
+/*==============================*/
+/*general*/
+.root {
+    -fx-background-color: #1a1a1a;
+}
+
+.synth-pane {
+    -fx-background-color: #ea7b1d;
+}
+
+#hbox_pedalboardPane {
+    -fx-pref-height: 400;
+    -fx-padding: 10;
+    -fx-spacing: 5;
+}
+
+#hbox_pianoPane {
+    -fx-pref-height: 150;
+    -fx-padding: 10;
+}
+
+Label {
+    -fx-font-weight: bold;
+}
+
+/*==============================*/
+/*==============================*/
+/*==============================*/
+/*==============================*/
+/*piano keyboard*/
+.piano-key.natural {
+    -fx-fill: white;
+    -fx-stroke: black;
+}
+
+.piano-key.pressed {
+    -fx-fill: #ea7b1d;
+}
+
+/*==============================*/
+/*==============================*/
+/*==============================*/
+/*==============================*/
+/*pedalboard*/
+.pedal {
+    -fx-background-color: #1a1a1a;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+    -fx-hgap: 0;
+    -fx-vgap: 10;
+}
+
+.pedal .head {
+    -fx-alignment: center;
+}
+
+.pedal .power-btn {
+    -fx-background-radius: 50;
+    -fx-background-color: #484848;
+}
+
+.pedal .power-btn:hover {
+    -fx-cursor: hand;
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-border-radius: 50;
+    -fx-border-insets: -4;
+    -fx-border-color: #484848;
+}
+
+.pedal .power-btn:selected,
+.pedal .power-btn:disabled:selected {
+    -fx-background-color: #ea7b1d;
+}
+
+.pedal .property {
+    -fx-alignment: center;
+    -fx-spacing: 5;
+}
+
+.pedal .label {
+    -fx-text-fill: #ea7b1d;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+.pedal .fader {
+    -fx-orientation: vertical;
+}
+
+.pedal .fader .track {
+    -fx-background-color: #484848;
+}
+
+.pedal .fader .thumb {
+    -fx-background-color: #ea7b1d;
+}
+
+.pedal TextField.property {
+    -fx-min-width: 40;
+    -fx-max-width: 40;
+    -fx-background-color: #484848;
+    -fx-text-fill: #ea7b1d;
+}
+
+.pedal .footer {
+    -fx-alignment: center;
+}
+
+.pedal .pedal-name {
+    -fx-font-size: 20;
+    -fx-wrap-text: true;
+}
+
+/*==============================*/
+/*pedal combobox*/
+.pedal ComboBox {
+    -fx-background-radius: 0;
+    -fx-background-color: #1a1a1a;
+    -fx-border-width: 1;
+    -fx-border-color: #ea7b1d;
+    -fx-text-fill: #ea7b1d;
+}
+
+.pedal ComboBox .text {
+    -fx-fill: #ea7b1d;
+}
+
+.pedal .combo-box-popup .list-view {
+    -fx-border-color: #ea7b1d;
+}
+
+.pedal .combo-box-popup .list-view,
+.pedal .combo-box-popup .list-cell {
+    -fx-background-color: #1a1a1a;
+}
+
+.pedal .combo-box-popup .list-cell:hover {
+    -fx-background-color: #454545;
+}
+
+.pedal ComboBox .arrow {
+    -fx-background-color: #ea7b1d;
+}
