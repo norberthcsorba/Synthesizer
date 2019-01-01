@@ -1,15 +1,9 @@
 package studio.oscillators;
 
-import javax.sound.sampled.AudioFormat;
-
 public class SquareWaveOscillator extends WaveOscillator {
 
-    public SquareWaveOscillator(AudioFormat audioFormat) {
-        super(audioFormat);
-    }
-
     @Override
-    protected float generateSample(float dT) {
-        return Math.sin(getPitch() * 2 * Math.PI * dT) > 0 ? 1 : -1;
+    protected float generateSample(float pitch, float dT) {
+        return Math.sin(pitch * 2 * Math.PI * dT) > 0 ? 1 * getAmplitude() : -1 * getAmplitude();
     }
 }

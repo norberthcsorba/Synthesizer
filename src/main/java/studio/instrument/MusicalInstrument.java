@@ -1,9 +1,7 @@
 package studio.instrument;
 
 import lombok.Getter;
-import studio.oscillators.WaveOscillator;
 
-import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,45 +9,41 @@ class MusicalInstrument implements IMusicalInstrument {
 
     @Getter
     private String name;
-    private List<WaveOscillator> oscillators;
+    private List<InstrumentString> strings;
 
-    MusicalInstrument(String name, List<WaveOscillator> oscillators) {
+    MusicalInstrument(String name, List<InstrumentString> strings) {
         this.name = name;
-        this.oscillators = oscillators;
-        oscillators.forEach(oscillator -> {
-            oscillator.setDaemon(true);
-            oscillator.start();
-        });
+        this.strings = strings;
     }
 
     public boolean play(float pitch) {
-        boolean pitchAlreadyPlaying = oscillators.stream().anyMatch(osc -> osc.getPitch() == pitch);
+        boolean pitchAlreadyPlaying = strings.stream().anyMatch(osc -> osc.getFundamentalPitch() == pitch);
         if (pitchAlreadyPlaying) {
             return false;
         }
-        Optional<WaveOscillator> availableOscillator = oscillators.stream()
-                .filter(osc -> !osc.isBusy())
+        Optional<InstrumentString> availableString = strings.stream()
+                .filter(string -> !string.isBusy())
                 .findAny();
-        if (!availableOscillator.isPresent()) {
+        if (!availableString.isPresent()) {
             return false;
         }
-        availableOscillator.get().setPitch(pitch);
+        availableString.get().setFundamentalPitch(pitch);
         return true;
     }
 
     public boolean stop(float pitch) {
-        Optional<WaveOscillator> playingOscillator = oscillators.stream()
-                .filter(osc -> osc.getPitch() == pitch)
+        Optional<InstrumentString> playingString = strings.stream()
+                .filter(string -> string.getFundamentalPitch() == pitch)
                 .findAny();
-        if (!playingOscillator.isPresent()) {
+        if (!playingString.isPresent()) {
             return false;
         }
-        playingOscillator.get().setPitch(0.0f);
+        playingString.get().setFundamentalPitch(0.0f);
         return true;
     }
 
     @Override
     public void cleanUp() {
-        oscillators.forEach(WaveOscillator::cleanUp);
+        //strings.forEach(WaveOscillator::cleanUp);
     }
 }

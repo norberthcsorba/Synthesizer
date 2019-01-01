@@ -1,0 +1,15 @@
+<instrument>
+    <name>Flute</name>
+    <oscillator>sine</oscillator>
+    <polyphony>1</polyphony>
+    <harmonics>
+        <harmonic amplitude="0.89"/>
+        <harmonic amplitude="1.0"/>
+        <harmonic amplitude="0.91"/>
+        <harmonic amplitude="0.85"/>
+        <harmonic amplitude="0.81"/>
+        <harmonic amplitude="0.58"/>
+        <harmonic amplitude="0.53"/>
+        <harmonic amplitude="0.58"/>
+    </harmonics>
+</instrument>

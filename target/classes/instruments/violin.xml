@@ -1,0 +1,16 @@
+<instrument>
+    <name>Violin</name>
+    <oscillator>sine</oscillator>
+    <polyphony>4</polyphony>
+    <harmonics>
+        <harmonic amplitude="1.0"/>
+        <harmonic amplitude="0.8"/>
+        <harmonic amplitude="0.72"/>
+        <harmonic amplitude="0.8"/>
+        <harmonic amplitude="0.768"/>
+        <harmonic amplitude="0.592"/>
+        <harmonic amplitude="0.752"/>
+        <harmonic amplitude="0.464"/>
+        <harmonic amplitude="0.32"/>
+    </harmonics>
+</instrument>

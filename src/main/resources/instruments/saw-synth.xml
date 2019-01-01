@@ -2,4 +2,7 @@
     <name>Saw Synth</name>
     <oscillator>saw</oscillator>
     <polyphony>10</polyphony>
+    <harmonics>
+        <harmonic amplitude="1.0"/>
+    </harmonics>
 </instrument>

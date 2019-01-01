@@ -8,7 +8,7 @@ public final class Constants {
     public static final int NR_OF_CHANNELS = 1;
     public static final boolean AUDIO_FORMAT_IS_SIGNED = true;
     public static final boolean AUDIO_FORMAT_IS_BIG_ENDIAN = true;
-    public static final int SIZE_OF_BUFFER_IN_SECONDS = 10;
+    public static final int SIZE_OF_BUFFER_IN_SECONDS = 3;
 
     public static float nrOfSamplesPerMilis() {
         return (float) Constants.SAMPLE_RATE / 1000;

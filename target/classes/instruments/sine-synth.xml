@@ -2,4 +2,7 @@
     <name>Sine Synth</name>
     <oscillator>sine</oscillator>
     <polyphony>10</polyphony>
+    <harmonics>
+        <harmonic amplitude="1.0"/>
+    </harmonics>
 </instrument>

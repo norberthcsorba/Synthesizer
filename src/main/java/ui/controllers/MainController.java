@@ -90,17 +90,17 @@ public class MainController {
     }
 
     private void initEnvelopeSubPane() {
-        Knob attackKnob = newKnob((short)0, (short)500, EnvelopeShaper.getAttackTime(), "ms", EnvelopeShaper::setAttackTime);
-        Knob decayKnob = newKnob((short)0, (short)500, EnvelopeShaper.getDecayTime(), "ms", EnvelopeShaper::setDecayTime);
-        Knob sustainKnob =  newKnob((short)-10, (short)-1, (short)EnvelopeShaper.getSustainAmp(), "db", EnvelopeShaper::setSustainAmp);
-        Knob releaseKnob = newKnob((short)0, (short)500, EnvelopeShaper.getReleaseTime(), "ms", EnvelopeShaper::setReleaseTime);
+        Knob attackKnob = newKnob((short) 0, (short) 500, EnvelopeShaper.getAttackTime(), "ms", EnvelopeShaper::setAttackTime);
+        Knob decayKnob = newKnob((short) 0, (short) 500, EnvelopeShaper.getDecayTime(), "ms", EnvelopeShaper::setDecayTime);
+        Knob sustainKnob = newKnob((short) -10, (short) -1, (short) EnvelopeShaper.getSustainAmp(), "db", EnvelopeShaper::setSustainAmp);
+        Knob releaseKnob = newKnob((short) 0, (short) 500, EnvelopeShaper.getReleaseTime(), "ms", EnvelopeShaper::setReleaseTime);
         vbox_attackControl.getChildren().add(attackKnob);
         vbox_decayControl.getChildren().add(decayKnob);
         vbox_sustainControl.getChildren().add(sustainKnob);
         vbox_releaseControl.getChildren().add(releaseKnob);
     }
 
-    private Knob newKnob(short minValue, short maxValue, short initialValue, String unit, Consumer<Short> callback){
+    private Knob newKnob(short minValue, short maxValue, short initialValue, String unit, Consumer<Short> callback) {
         return KnobBuilder.create()
                 .gradientStops(new Stop(0, Color.BLACK))
                 .currentValueColor(Color.GREEN)
@@ -112,7 +112,7 @@ public class MainController {
                 .onTargetSet(event -> {
                     Knob knob1 = (Knob) event.getSource();
                     knob1.setCurrentValue(knob1.getTargetValue());
-                    callback.accept((short)knob1.getTargetValue());
+                    callback.accept((short) knob1.getTargetValue());
                 })
                 .unit(unit)
                 .build();
@@ -142,7 +142,10 @@ public class MainController {
             PianoKeyboardMapper.KeyMapping mapping = keyboardMapper.getMappingTable().get(keyPressed);
             if (mapping != null) {
                 float pitchToPlay = mapping.getPitch();
-                instrument.play(pitchToPlay);
+                boolean pitchCouldBePlayed = instrument.play(pitchToPlay);
+                if (!pitchCouldBePlayed) {
+                    return;
+                }
                 for (int i = 0; i < keyboardMapper.getMappingList().size(); i++) {
                     PianoKeyboardMapper.KeyMapping note = keyboardMapper.getMappingList().get(i);
                     if (note.getKey().equals(keyPressed)) {
@@ -157,7 +160,10 @@ public class MainController {
             PianoKeyboardMapper.KeyMapping mapping = keyboardMapper.getMappingTable().get(keyPressed);
             if (mapping != null) {
                 float pitchToPlay = mapping.getPitch();
-                instrument.stop(pitchToPlay);
+                boolean pitchCouldBePlayed = instrument.stop(pitchToPlay);
+                if (!pitchCouldBePlayed) {
+                    return;
+                }
                 for (int i = 0; i < keyboardMapper.getMappingList().size(); i++) {
                     PianoKeyboardMapper.KeyMapping note = keyboardMapper.getMappingList().get(i);
                     if (note.getKey().equals(keyPressed)) {

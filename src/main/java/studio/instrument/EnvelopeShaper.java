@@ -2,7 +2,6 @@ package studio.instrument;
 
 import lombok.Getter;
 import lombok.Setter;
-import studio.oscillators.WaveOscillator;
 import utils.Constants;
 
 import javax.sound.sampled.FloatControl;
@@ -20,7 +19,7 @@ public class EnvelopeShaper {
 
     private SourceDataLine output;
     private FloatControl gainControl;
-    private WaveOscillator oscillator;
+    private InstrumentString instrumentString;
     private ExecutorService executor;
     private Future<?> threadHandler;
     private boolean flag_Attack, flag_Release, flag_Mute;
@@ -43,8 +42,8 @@ public class EnvelopeShaper {
     private static final float MAX_AMP = -1.0f;
     private static final float MIN_AMP = -30.0f;
 
-    public EnvelopeShaper(WaveOscillator oscillator, SourceDataLine output) {
-        this.oscillator = oscillator;
+    public EnvelopeShaper(InstrumentString instrumentString, SourceDataLine output) {
+        this.instrumentString = instrumentString;
         this.output = output;
         this.gainControl = (FloatControl) output.getControl(FloatControl.Type.MASTER_GAIN);
         this.executor = Executors.newSingleThreadExecutor();
@@ -74,13 +73,13 @@ public class EnvelopeShaper {
     public void start() {
         threadHandler = executor.submit(() -> {
             try {
-                attack();
+                //attack();
                 System.out.println("attack finished");
                 if (!hasDecayAndSustain) {
-                    oscillator.setPitch(WaveOscillator.NULL_PITCH);
+                    instrumentString.setFundamentalPitch(InstrumentString.NULL_PITCH);
                     throw new InterruptedException();
                 }
-                decay();
+                //decay();
                 System.out.println("decay finished");
                 sustain();
                 System.out.println("sustain finished");
@@ -113,7 +112,7 @@ public class EnvelopeShaper {
     }
 
     private void release() throws InterruptedException {
-        fade(gainControl.getValue(), MIN_AMP, releaseTime, flag_Mute);
+        //fade(gainControl.getValue(), MIN_AMP, releaseTime, flag_Mute);
     }
 
     private void mute() {
