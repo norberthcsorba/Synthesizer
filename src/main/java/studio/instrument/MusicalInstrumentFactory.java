@@ -1,4 +1,4 @@
-package studio.instruments;
+package studio.instrument;
 
 import lombok.Getter;
 import org.w3c.dom.Document;

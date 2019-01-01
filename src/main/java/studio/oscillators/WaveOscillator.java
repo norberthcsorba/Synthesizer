@@ -2,6 +2,8 @@ package studio.oscillators;
 
 import lombok.Getter;
 import lombok.Setter;
+import studio.instrument.EnvelopeShaper;
+import utils.Constants;
 
 import javax.sound.sampled.*;
 import java.util.concurrent.locks.Condition;
@@ -13,18 +15,18 @@ public abstract class WaveOscillator extends Thread {
     private SourceDataLine output;
     private ReentrantLock lock;
     private Condition cond_pitchIsNonNull;
+    private EnvelopeShaper envelopeShaper;
+    public static final float NULL_PITCH = 0.0f;
     @Getter
-    @Setter
     private boolean busy;
-
     @Getter
     @Setter
     private float pitch;
 
 
-    public WaveOscillator(AudioFormat audioFormat) {
+    WaveOscillator(AudioFormat audioFormat) {
         this.audioFormat = audioFormat;
-        this.pitch = 0.0f;
+        this.pitch = NULL_PITCH;
         lock = new ReentrantLock();
         cond_pitchIsNonNull = lock.newCondition();
 
@@ -36,13 +38,16 @@ public abstract class WaveOscillator extends Thread {
         } catch (LineUnavailableException ex) {
             ex.printStackTrace();
         }
+
+        envelopeShaper = new EnvelopeShaper(this, output);
     }
 
     public void setPitch(float pitch) {
-        if (this.pitch != pitch) {
-            output.flush();
-        }
-        if (pitch != 0.0f) {
+        envelopeShaper.interrupt();
+        if (pitch == NULL_PITCH) {
+            busy = false;
+        } else {
+            busy = true;
             lock.lock();
             cond_pitchIsNonNull.signal();
             lock.unlock();
@@ -51,29 +56,26 @@ public abstract class WaveOscillator extends Thread {
     }
 
     private byte[] generateSampleBuffer() {
-        int sampleRate = (int) audioFormat.getSampleRate();
-        float[] buffer = new float[sampleRate];
+        float[] buffer = new float[Constants.SAMPLE_RATE * Constants.SIZE_OF_BUFFER_IN_SECONDS];
         for (int sampleNr = 0; sampleNr < buffer.length; sampleNr++) {
-            float elapsedTime = (float) sampleNr / sampleRate;
+            float elapsedTime = (float) sampleNr / Constants.SAMPLE_RATE;
             buffer[sampleNr] = generateSample(elapsedTime);
         }
         return convertToByteAudioBuffer(buffer);
     }
 
     private float denormalizeSample(float sample) {
-        return (float) (Math.pow(2, audioFormat.getSampleSizeInBits() - 1) - 1) * sample;
+        return (float) (Math.pow(2, Constants.BIT_DEPTH - 1) - 1) * sample;
     }
 
     private byte[] convertToByteAudioBuffer(float[] floatBuffer) {
-        int sampleRate = (int) audioFormat.getSampleRate();
-        int byteDepth = audioFormat.getSampleSizeInBits() / 8;
-        byte[] byteBuffer = new byte[sampleRate * byteDepth];
+        int byteDepth = Constants.BIT_DEPTH / 8;
+        byte[] byteBuffer = new byte[floatBuffer.length * byteDepth];
         for (int i = 0, j = 0; i < floatBuffer.length; i++, j += 2) {
             int sample = (int) denormalizeSample(floatBuffer[i]);
             byteBuffer[j] = (byte) ((sample >> 8) & 0xff);
             byteBuffer[j + 1] = (byte) (sample & 0xff);
         }
-
         return byteBuffer;
     }
 
@@ -81,18 +83,26 @@ public abstract class WaveOscillator extends Thread {
     public void run() {
         try {
             while (true) {
-                if (pitch == 0.0f) {
+                if (pitch == NULL_PITCH) {
                     lock.lock();
                     cond_pitchIsNonNull.await();
                     lock.unlock();
                 }
                 byte[] audioBuffer = generateSampleBuffer();
-                output.write(audioBuffer, 0, (int) audioFormat.getSampleRate());
+                if (!envelopeShaper.isAlive()) {
+                    envelopeShaper.start();
+                }
+                output.write(audioBuffer, 0, audioBuffer.length);
             }
         } catch (InterruptedException ex) {
 
         }
     }
 
+    public void cleanUp(){
+        envelopeShaper.cleanUp();
+    }
+
     protected abstract float generateSample(float dT);
+
 }

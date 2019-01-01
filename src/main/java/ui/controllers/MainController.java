@@ -16,8 +16,9 @@ import javafx.scene.shape.SVGPath;
 import javafx.util.StringConverter;
 import se.europeanspallationsource.javafx.control.knobs.Knob;
 import se.europeanspallationsource.javafx.control.knobs.KnobBuilder;
-import studio.instruments.IMusicalInstrument;
-import studio.instruments.MusicalInstrumentFactory;
+import studio.instrument.EnvelopeShaper;
+import studio.instrument.IMusicalInstrument;
+import studio.instrument.MusicalInstrumentFactory;
 import ui.utils.PianoKeyboardMapper;
 import utils.Constants;
 import utils.exceptions.OscillatorInstantiationException;
@@ -25,6 +26,7 @@ import utils.exceptions.XmlParseException;
 
 import java.io.File;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class MainController {
     private IMusicalInstrument instrument;
@@ -88,53 +90,32 @@ public class MainController {
     }
 
     private void initEnvelopeSubPane() {
-        Knob attackKnob = KnobBuilder.create().gradientStops(new Stop(0, Color.BLACK))
-                .currentValueColor(Color.GREEN)
-                .currentValue(100)
-                .targetValue(100)
-                .maxValue(1000)
-                .onTargetSet(event -> {
-                    Knob knob1 = (Knob) event.getSource();
-                    knob1.setCurrentValue(knob1.getTargetValue());
-                })
-                .unit("ms")
-                .build();
-        Knob decayKnob = KnobBuilder.create().gradientStops(new Stop(0, Color.BLACK))
-                .currentValueColor(Color.GREEN)
-                .currentValue(200)
-                .targetValue(200)
-                .maxValue(1000)
-                .onTargetSet(event -> {
-                    Knob knob1 = (Knob) event.getSource();
-                    knob1.setCurrentValue(knob1.getTargetValue());
-                })
-                .unit("ms")
-                .build();
-        Knob sustainKnob = KnobBuilder.create().gradientStops(new Stop(0, Color.BLACK))
-                .currentValueColor(Color.GREEN)
-                .currentValue(90)
-                .targetValue(90)
-                .onTargetSet(event -> {
-                    Knob knob1 = (Knob) event.getSource();
-                    knob1.setCurrentValue(knob1.getTargetValue());
-                })
-                .unit("%")
-                .build();
-        Knob releaseKnob = KnobBuilder.create().gradientStops(new Stop(0, Color.BLACK))
-                .currentValueColor(Color.GREEN)
-                .currentValue(400)
-                .targetValue(400)
-                .maxValue(1000)
-                .onTargetSet(event -> {
-                    Knob knob1 = (Knob) event.getSource();
-                    knob1.setCurrentValue(knob1.getTargetValue());
-                })
-                .unit("ms")
-                .build();
+        Knob attackKnob = newKnob((short)0, (short)500, EnvelopeShaper.getAttackTime(), "ms", EnvelopeShaper::setAttackTime);
+        Knob decayKnob = newKnob((short)0, (short)500, EnvelopeShaper.getDecayTime(), "ms", EnvelopeShaper::setDecayTime);
+        Knob sustainKnob =  newKnob((short)-10, (short)-1, (short)EnvelopeShaper.getSustainAmp(), "db", EnvelopeShaper::setSustainAmp);
+        Knob releaseKnob = newKnob((short)0, (short)500, EnvelopeShaper.getReleaseTime(), "ms", EnvelopeShaper::setReleaseTime);
         vbox_attackControl.getChildren().add(attackKnob);
         vbox_decayControl.getChildren().add(decayKnob);
         vbox_sustainControl.getChildren().add(sustainKnob);
         vbox_releaseControl.getChildren().add(releaseKnob);
+    }
+
+    private Knob newKnob(short minValue, short maxValue, short initialValue, String unit, Consumer<Short> callback){
+        return KnobBuilder.create()
+                .gradientStops(new Stop(0, Color.BLACK))
+                .currentValueColor(Color.GREEN)
+                .currentValue(initialValue)
+                .targetValue(initialValue)
+                .minValue(minValue)
+                .maxValue(maxValue)
+                .decimals(0)
+                .onTargetSet(event -> {
+                    Knob knob1 = (Knob) event.getSource();
+                    knob1.setCurrentValue(knob1.getTargetValue());
+                    callback.accept((short)knob1.getTargetValue());
+                })
+                .unit(unit)
+                .build();
     }
 
     private void initPianoView() {
@@ -205,5 +186,8 @@ public class MainController {
         }
     }
 
+    public void cleanUp() {
+        instrument.cleanUp();
+    }
 
 }

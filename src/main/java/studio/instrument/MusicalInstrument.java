@@ -1,8 +1,9 @@
-package studio.instruments;
+package studio.instrument;
 
 import lombok.Getter;
 import studio.oscillators.WaveOscillator;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,7 +13,7 @@ class MusicalInstrument implements IMusicalInstrument {
     private String name;
     private List<WaveOscillator> oscillators;
 
-    public MusicalInstrument(String name, List<WaveOscillator> oscillators) {
+    MusicalInstrument(String name, List<WaveOscillator> oscillators) {
         this.name = name;
         this.oscillators = oscillators;
         oscillators.forEach(oscillator -> {
@@ -32,7 +33,6 @@ class MusicalInstrument implements IMusicalInstrument {
         if (!availableOscillator.isPresent()) {
             return false;
         }
-        availableOscillator.get().setBusy(true);
         availableOscillator.get().setPitch(pitch);
         return true;
     }
@@ -45,7 +45,11 @@ class MusicalInstrument implements IMusicalInstrument {
             return false;
         }
         playingOscillator.get().setPitch(0.0f);
-        playingOscillator.get().setBusy(false);
         return true;
+    }
+
+    @Override
+    public void cleanUp() {
+        oscillators.forEach(WaveOscillator::cleanUp);
     }
 }

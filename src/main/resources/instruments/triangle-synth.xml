@@ -1,5 +1,5 @@
 <instrument>
     <name>Triangle Synth</name>
     <oscillator>triangle</oscillator>
-    <polyphony>88</polyphony>
+    <polyphony>10</polyphony>
 </instrument>
