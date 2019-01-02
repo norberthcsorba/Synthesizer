@@ -57,7 +57,7 @@ public class MusicalInstrumentFactory {
         try {
             DataLine.Info dataLineInfo = new DataLine.Info(SourceDataLine.class, audioFormat);
             output = (SourceDataLine) AudioSystem.getLine(dataLineInfo);
-            output.open(audioFormat);
+            output.open(audioFormat, Constants.SIZE_OF_TARGET_BUFFER);
             output.start();
         } catch (LineUnavailableException ex) {
             ex.printStackTrace();

@@ -58,16 +58,13 @@ public class EnvelopeShaper {
     public void interrupt() {
         if (threadHandler != null) {
             threadHandler.cancel(true);
-            if (flag_Release) {
-                flag_Mute = true;
-                System.out.println("set flag_Mute");
-            }
-            if (flag_Attack) {
-                flag_Release = true;
-                System.out.println("set flag_Release");
-            }
         }
-        System.out.println("set flag_Attack");
+        if (flag_Release) {
+            flag_Mute = true;
+        }
+        if (flag_Attack) {
+            flag_Release = true;
+        }
         flag_Attack = true;
     }
 
@@ -92,11 +89,12 @@ public class EnvelopeShaper {
                 try {
                     release();
                     System.out.println("release finished");
-                } catch (InterruptedException ex2) {
-
-                } finally {
                     mute();
                     System.out.println("mute finished");
+                } catch (InterruptedException ex2) {
+                    mute();
+//                    System.out.println("mute finished");
+                    flag_Attack = true;
                 }
             }
         });
@@ -107,6 +105,7 @@ public class EnvelopeShaper {
             fadeAmplitude(MIN_AMP, MAX_AMP, attackTime, this::isFlag_Release);
         } else {
             gainControl.setValue(MAX_AMP);
+            checkInterruptFlag(this::isFlag_Release);
         }
     }
 
@@ -115,8 +114,8 @@ public class EnvelopeShaper {
     }
 
     private void sustain() throws InterruptedException {
-        synchronized (this) {
-            wait(); //wait until interrupted
+        synchronized (instrumentString.lock) {
+            instrumentString.lock.wait(); //wait until interrupted
         }
     }
 
@@ -127,17 +126,19 @@ public class EnvelopeShaper {
     }
 
     private void mute() {
-        gainControl.setValue(MIN_AMP);
-        output.flush();
-        output.stop();
-        output.close();
-        try {
-            output.open();
-            output.start();
-        } catch (LineUnavailableException ex) {
-            ex.printStackTrace();
+        synchronized (instrumentString.lock) {
+            gainControl.setValue(MIN_AMP);
+            output.flush();
+            output.stop();
+            output.close();
+            try {
+                output.open(output.getFormat(), Constants.SIZE_OF_TARGET_BUFFER);
+                output.start();
+            } catch (LineUnavailableException ex) {
+                ex.printStackTrace();
+            }
+            flag_Mute = flag_Release = flag_Attack = false;
         }
-        flag_Mute = flag_Release = flag_Attack = false;
     }
 
     private void fadeAmplitude(float startAmp, float targetAmp, short availableTime, Supplier<Boolean> interruptFlag) throws InterruptedException {
@@ -150,19 +151,19 @@ public class EnvelopeShaper {
         Map<Float, Float> f = new HashMap<>();
         for (float i = (int) startAmp; crtAmpHasNotReachedTarget.test(i); i = incrementCrtAmp.apply(i)) {
             f.put(i, -lin2log(-targetAmp, -startAmp, -i));
+            checkInterruptFlag(interruptFlag);
         }
         f.put(targetAmp, -lin2log(-targetAmp, -startAmp, -targetAmp));
 
-
-        long deltaSamples;
-        long startFramePosition = output.getLongFramePosition();
-        while ((deltaSamples = output.getLongFramePosition() - startFramePosition) < availableTimeInSamples) {
-            float linCrtAmp = startAmp + deltaSamples * linAmpStepPerSample;
-            linCrtAmp = crtAmpHasNotReachedTarget.test(linCrtAmp) ? linCrtAmp : targetAmp;
-            float logCrtAmp = f.get((float) Math.round(linCrtAmp));
-            gainControl.setValue(logCrtAmp);
-            if (interruptFlag.get()) {
-                throw new InterruptedException();
+        synchronized (instrumentString.lock) {
+            long deltaSamples;
+            long startFramePosition = output.getLongFramePosition();
+            while ((deltaSamples = output.getLongFramePosition() - startFramePosition) < availableTimeInSamples) {
+                float linCrtAmp = startAmp + deltaSamples * linAmpStepPerSample;
+                linCrtAmp = crtAmpHasNotReachedTarget.test(linCrtAmp) ? linCrtAmp : targetAmp;
+                float logCrtAmp = f.get((float) Math.round(linCrtAmp));
+                gainControl.setValue(logCrtAmp);
+                checkInterruptFlag(interruptFlag);
             }
         }
 
@@ -198,6 +199,12 @@ public class EnvelopeShaper {
         double b = Math.log(max / min) / (max - min);
         double a = max / Math.exp(b * max);
         return (float) (a * Math.exp(b * x));
+    }
+
+    private void checkInterruptFlag(Supplier<Boolean> interruptFlag) throws InterruptedException {
+        if (interruptFlag.get()) {
+            throw new InterruptedException();
+        }
     }
 
 //    private int toIntAudioSample(byte[] audioBuffer, int pos) {

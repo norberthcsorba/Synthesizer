@@ -29,6 +29,7 @@ public class MainController {
     private PianoKeyboardMapper keyboardMapper;
     private MusicalInstrumentFactory instrumentFactory;
     private Scene crtScene;
+    private long lastTimeKeyWasPressed = System.currentTimeMillis();
     @FXML
     private HBox hbox_pianoKeyboard;
     @FXML
@@ -125,6 +126,14 @@ public class MainController {
 
     private void mapPianoToKeyboard() {
         crtScene.setOnKeyPressed(event -> {
+            System.out.println(event.getCode() + " (pressed)");
+//            if(System.currentTimeMillis() - lastTimeKeyWasPressed < 200){
+//                System.out.println("too early");
+//                lastTimeKeyWasPressed = System.currentTimeMillis();
+//                return;
+//            }
+//            lastTimeKeyWasPressed = System.currentTimeMillis();
+
             String keyPressed = event.getCode().getChar().toLowerCase();
             PianoKeyboardMapper.KeyMapping mapping = keyboardMapper.getMappingTable().get(keyPressed);
             if (mapping != null) {
@@ -143,6 +152,7 @@ public class MainController {
             }
         });
         crtScene.setOnKeyReleased(event -> {
+            System.out.println(event.getCode() + " (released)");
             String keyPressed = event.getCode().getChar().toLowerCase();
             PianoKeyboardMapper.KeyMapping mapping = keyboardMapper.getMappingTable().get(keyPressed);
             if (mapping != null) {
@@ -161,7 +171,6 @@ public class MainController {
             }
         });
         crtScene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
-            System.out.println(event.getCode());
             switch (event.getCode()) {
                 case F10:
                     keyboardMapper.shiftMapping(-Constants.OCTAVE_SIZE);

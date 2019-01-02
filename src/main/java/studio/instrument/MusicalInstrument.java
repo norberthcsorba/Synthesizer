@@ -38,7 +38,7 @@ class MusicalInstrument implements IMusicalInstrument {
         if (!playingString.isPresent()) {
             return false;
         }
-        playingString.get().setFundamentalPitch(0.0f);
+        playingString.get().setFundamentalPitch(InstrumentString.NULL_PITCH);
         return true;
     }
 

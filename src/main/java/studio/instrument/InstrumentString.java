@@ -1,34 +1,28 @@
 package studio.instrument;
 
 import lombok.Getter;
-import lombok.Setter;
 import studio.oscillators.WaveOscillator;
 import utils.Constants;
 
 import javax.sound.sampled.SourceDataLine;
 import java.util.List;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.ReentrantLock;
 
 class InstrumentString extends Thread {
 
+    final Object lock;
+    static final float NULL_PITCH = 0.0f;
     private SourceDataLine output;
-    private ReentrantLock lock;
-    private Condition cond_pitchIsNonNull;
     private EnvelopeShaper envelopeShaper;
-    List<WaveOscillator> oscillators;
-    public static final float NULL_PITCH = 0.0f;
+    private List<WaveOscillator> oscillators;
     @Getter
     private boolean busy;
     @Getter
-    @Setter
     private float fundamentalPitch;
     private byte harmonic;
 
     InstrumentString(SourceDataLine output, List<WaveOscillator> oscillators) {
         this.output = output;
-        this.lock = new ReentrantLock();
-        this.cond_pitchIsNonNull = lock.newCondition();
+        this.lock = new Object();
         this.envelopeShaper = new EnvelopeShaper(this, output);
         this.oscillators = oscillators;
         this.fundamentalPitch = NULL_PITCH;
@@ -36,31 +30,33 @@ class InstrumentString extends Thread {
     }
 
     void setFundamentalPitch(float fundamentalPitch) {
-        envelopeShaper.interrupt();
-        if (fundamentalPitch == NULL_PITCH) {
-            busy = false;
-        } else {
-            busy = true;
-            lock.lock();
-            cond_pitchIsNonNull.signal();
-            lock.unlock();
+        synchronized (lock) {
+            envelopeShaper.interrupt();
+            if (fundamentalPitch == NULL_PITCH) {
+                busy = false;
+            } else {
+                busy = true;
+                lock.notify();
+            }
+            this.fundamentalPitch = fundamentalPitch;
         }
-        this.fundamentalPitch = fundamentalPitch;
     }
 
     @Override
     public void run() {
         try {
             while (true) {
-                if (fundamentalPitch == NULL_PITCH) {
-                    lock.lock();
-                    cond_pitchIsNonNull.await();
-                    lock.unlock();
+                synchronized (lock) {
+                    if (fundamentalPitch == NULL_PITCH) {
+                        lock.wait();
+                    }
                 }
                 byte[] audioBuffer = generateAudioBuffer();
-                if (!envelopeShaper.isAlive()) {
-                    envelopeShaper.start();
-                    Thread.sleep(10);
+                synchronized (lock) {
+                    if (!envelopeShaper.isAlive()) {
+                        envelopeShaper.start();
+                        Thread.sleep(10);
+                    }
                 }
                 output.write(audioBuffer, 0, audioBuffer.length);
             }
@@ -76,7 +72,6 @@ class InstrumentString extends Thread {
                 .reduce((buffer1, buffer2) -> {
                     for (int sampleNr = 0; sampleNr < buffer1.length && sampleNr < buffer2.length; sampleNr++) {
                         buffer1[sampleNr] = (buffer1[sampleNr] + buffer2[sampleNr]) / 2;
-//                        buffer1[sampleNr] = (float)Math.sin(buffer1[sampleNr] + buffer2[sampleNr]);
                     }
                     return buffer1;
                 }).get();

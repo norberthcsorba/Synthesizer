@@ -1,54 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-
-<AnchorPane stylesheets="@../styles/style1.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controllers.MainController">
+<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<AnchorPane stylesheets="@../styles/style1.css" xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controllers.MainController">
     <children>
-        <VBox layoutX="419.0" layoutY="288.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox layoutX="419.0" layoutY="288.0" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <HBox fx:id="hbox_pedalboardPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="1200.0" styleClass="synth-pane">
+                <HBox fx:id="hbox_pedalboardPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0"
+                      prefWidth="1200.0" styleClass="synth-pane">
                     <children>
                         <GridPane styleClass="pedal">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints maxHeight="308.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="308.0" minHeight="10.0" prefHeight="219.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="186.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="308.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="308.0" minHeight="10.0" prefHeight="219.0"
+                                                vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="186.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
                                 <VBox GridPane.rowIndex="1">
                                     <children>
-                                        <ComboBox fx:id="combo_availableInstruments" onAction="#handleOnChange_ComboAvailableInstruments" prefWidth="150.0" visibleRowCount="5" />
+                                        <ComboBox fx:id="combo_availableInstruments"
+                                                  onAction="#handleOnChange_ComboAvailableInstruments" prefWidth="150.0"
+                                                  visibleRowCount="5"/>
                                     </children>
                                 </VBox>
                                 <HBox styleClass="footer" GridPane.rowIndex="2">
                                     <children>
-                                        <Label styleClass="pedal-name" text="Instrument" />
+                                        <Label styleClass="pedal-name" text="Instrument"/>
                                     </children>
                                 </HBox>
                                 <HBox prefHeight="81.0" prefWidth="150.0" styleClass="head">
                                     <children>
-                                        <ToggleButton disable="true" mnemonicParsing="false" selected="true" styleClass="power-btn">
+                                        <ToggleButton disable="true" mnemonicParsing="false" selected="true"
+                                                      styleClass="power-btn">
                                             <graphic>
-                                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@../imgs/power.png" />
+                                                        <Image url="@../imgs/power.png"/>
                                                     </image>
                                                 </ImageView>
                                             </graphic>
@@ -59,72 +57,87 @@
                         </GridPane>
                         <GridPane prefHeight="380.0" prefWidth="274.0" styleClass="pedal">
                             <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                             </columnConstraints>
                             <rowConstraints>
-                                <RowConstraints maxHeight="135.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="229.0" minHeight="10.0" prefHeight="229.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="110.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="135.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="229.0" minHeight="10.0" prefHeight="229.0"
+                                                vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="110.0" minHeight="10.0" prefHeight="67.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
                             <children>
                                 <VBox prefHeight="200.0" prefWidth="100.0" styleClass="property" GridPane.rowIndex="1">
                                     <children>
-                                        <Label text="Attack Time" />
-                                        <Slider fx:id="slider_attackTime" blockIncrement="1.0" majorTickUnit="50.0" max="500.0" showTickLabels="true" snapToTicks="true" styleClass="fader" value="50.0" />
+                                        <Label text="Attack Time"/>
+                                        <Slider fx:id="slider_attackTime" blockIncrement="1.0" majorTickUnit="50.0"
+                                                max="500.0" showTickLabels="true" snapToTicks="true" styleClass="fader"
+                                                value="50.0"/>
                                         <HBox>
                                             <children>
-                                                <TextField fx:id="field_attackTime" styleClass="property" />
-                                                <Label text="ms" />
+                                                <TextField fx:id="field_attackTime" styleClass="property"/>
+                                                <Label text="ms"/>
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
-                                <VBox prefHeight="200.0" prefWidth="100.0" styleClass="property" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                <VBox prefHeight="200.0" prefWidth="100.0" styleClass="property"
+                                      GridPane.columnIndex="1" GridPane.rowIndex="1">
                                     <children>
-                                        <Label text="Decay Time" />
-                                        <Slider fx:id="slider_decayTime" blockIncrement="1.0" majorTickUnit="50.0" max="300.0" showTickLabels="true" snapToTicks="true" styleClass="fader" value="50.0" />
+                                        <Label text="Decay Time"/>
+                                        <Slider fx:id="slider_decayTime" blockIncrement="1.0" majorTickUnit="50.0"
+                                                max="300.0" showTickLabels="true" snapToTicks="true" styleClass="fader"
+                                                value="50.0"/>
                                         <HBox>
                                             <children>
-                                                <TextField fx:id="field_decayTime" styleClass="property" />
-                                                <Label text="ms" />
+                                                <TextField fx:id="field_decayTime" styleClass="property"/>
+                                                <Label text="ms"/>
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
-                                <VBox prefHeight="200.0" prefWidth="100.0" styleClass="property" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                <VBox prefHeight="200.0" prefWidth="100.0" styleClass="property"
+                                      GridPane.columnIndex="2" GridPane.rowIndex="1">
                                     <children>
-                                        <Label text="Sustain Amp" />
-                                        <Slider fx:id="slider_sustainAmp" blockIncrement="1.0" majorTickUnit="1.0" max="-1.0" min="-10.0" minorTickCount="2" showTickLabels="true" snapToTicks="true" styleClass="fader" value="-4.0" />
+                                        <Label text="Sustain Amp"/>
+                                        <Slider fx:id="slider_sustainAmp" blockIncrement="1.0" majorTickUnit="1.0"
+                                                max="-1.0" min="-10.0" minorTickCount="2" showTickLabels="true"
+                                                snapToTicks="true" styleClass="fader" value="-4.0"/>
                                         <HBox>
                                             <children>
-                                                <TextField fx:id="field_sustainAmp" styleClass="property" />
-                                                <Label text="dB" />
+                                                <TextField fx:id="field_sustainAmp" styleClass="property"/>
+                                                <Label text="dB"/>
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
-                                <VBox prefHeight="200.0" prefWidth="100.0" styleClass="property" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                                <VBox prefHeight="200.0" prefWidth="100.0" styleClass="property"
+                                      GridPane.columnIndex="3" GridPane.rowIndex="1">
                                     <children>
-                                        <Label text="Release Time" />
-                                        <Slider fx:id="slider_releaseTime" majorTickUnit="50.0" max="500.0" showTickLabels="true" snapToTicks="true" styleClass="fader" value="100.0" />
+                                        <Label text="Release Time"/>
+                                        <Slider fx:id="slider_releaseTime" majorTickUnit="50.0" max="500.0"
+                                                showTickLabels="true" snapToTicks="true" styleClass="fader"
+                                                value="100.0"/>
                                         <HBox>
                                             <children>
-                                                <TextField fx:id="field_releaseTime" styleClass="property" />
-                                                <Label text="ms" />
+                                                <TextField fx:id="field_releaseTime" styleClass="property"/>
+                                                <Label text="ms"/>
                                             </children>
                                         </HBox>
                                     </children>
                                 </VBox>
-                                <HBox prefHeight="61.0" prefWidth="157.0" styleClass="head" GridPane.columnSpan="2147483647">
+                                <HBox prefHeight="61.0" prefWidth="157.0" styleClass="head"
+                                      GridPane.columnSpan="2147483647">
                                     <children>
-                                        <ToggleButton disable="true" mnemonicParsing="false" selected="true" styleClass="power-btn">
+                                        <ToggleButton disable="true" mnemonicParsing="false" selected="true"
+                                                      styleClass="power-btn">
                                             <graphic>
-                                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true"
+                                                           preserveRatio="true">
                                                     <image>
-                                                        <Image url="@../imgs/power.png" />
+                                                        <Image url="@../imgs/power.png"/>
                                                     </image>
                                                 </ImageView>
                                             </graphic>
@@ -133,7 +146,7 @@
                                 </HBox>
                                 <HBox styleClass="footer" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
                                     <children>
-                                        <Label styleClass="pedal-name" text="Envelope Shaper" />
+                                        <Label styleClass="pedal-name" text="Envelope Shaper"/>
                                     </children>
                                 </HBox>
                             </children>
@@ -142,19 +155,19 @@
                 </HBox>
                 <HBox id="hbox_pianoPane" maxHeight="-Infinity" maxWidth="1200.0" prefHeight="200.0" prefWidth="1200.0">
                     <padding>
-                        <Insets bottom="15.0" left="30.0" right="30.0" top="15.0" />
+                        <Insets bottom="15.0" left="30.0" right="30.0" top="15.0"/>
                     </padding>
                     <styleClass>
-                        <String fx:value="synth-pane" />
-                        <String fx:value="piano-keyboard" />
+                        <String fx:value="synth-pane"/>
+                        <String fx:value="piano-keyboard"/>
                     </styleClass>
                     <children>
-                        <HBox fx:id="hbox_pianoKeyboard" prefHeight="100.0" prefWidth="200.0" />
+                        <HBox fx:id="hbox_pianoKeyboard" prefHeight="100.0" prefWidth="200.0"/>
                     </children>
                 </HBox>
             </children>
             <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
             </padding>
         </VBox>
     </children>
