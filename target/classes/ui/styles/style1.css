@@ -39,6 +39,9 @@ Label {
 .piano-key.pressed {
     -fx-fill: #ea7b1d;
 }
+.piano-key.natural.unmapped {
+    -fx-fill: #8e8e8e;
+}
 
 /*==============================*/
 /*==============================*/

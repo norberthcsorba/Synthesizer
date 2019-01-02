@@ -24,6 +24,76 @@ public class PianoKeyboardMapper {
         loadFromFile(xmlMappingFile);
     }
 
+    public boolean shiftMapping(int nrOfKeysToShift) {
+        if (nrOfKeysToShift == 0) {
+            return true;
+        }
+        if (nrOfKeysToShift < 0) {
+            if (-nrOfKeysToShift > nrOfUnmappedKeysFromStart()) {
+                return false;
+            }
+            shiftMappingToLeft(-nrOfKeysToShift);
+            rebuildMappingTable();
+            return true;
+        } else {
+            if (nrOfKeysToShift > nrOfUnmappedKeysFromEnd()) {
+                return false;
+            }
+            shiftMappingToRight(nrOfKeysToShift);
+            rebuildMappingTable();
+            return true;
+        }
+    }
+
+    private void rebuildMappingTable() {
+        mappingTable = new HashMap<>();
+        mappingList.forEach(keyMapping -> {
+            if (keyMapping.key != "") {
+                mappingTable.put(keyMapping.key, keyMapping);
+            }
+        });
+    }
+
+    private void shiftMappingToLeft(int delta) {
+        int i = 0;
+        for (; i < mappingList.size() - delta; i++) {
+            mappingList.get(i).key = mappingList.get(i + delta).key;
+        }
+        for (; i < mappingList.size(); i++) {
+            mappingList.get(i).key = "";
+        }
+    }
+
+    private void shiftMappingToRight(int delta) {
+        int i = mappingList.size() - 1;
+        for (; i >= delta; i--) {
+            mappingList.get(i).key = mappingList.get(i - delta).key;
+        }
+        for (; i >= 0; i--) {
+            mappingList.get(i).key = "";
+        }
+    }
+
+    private byte nrOfUnmappedKeysFromStart() {
+        for (int i = 0; i < mappingList.size(); i++) {
+            if (!mappingList.get(i).key.equals("")) {
+                return (byte) i;
+            }
+        }
+        return (byte) mappingList.size();
+    }
+
+    private byte nrOfUnmappedKeysFromEnd() {
+        int nrOfUnmappedKeys = 0;
+        for (int i = mappingList.size() - 1; i >= 0; i--) {
+            if (!mappingList.get(i).key.equals("")) {
+                return (byte) nrOfUnmappedKeys;
+            }
+            nrOfUnmappedKeys++;
+        }
+        return (byte) nrOfUnmappedKeys;
+    }
+
     private void loadFromFile(File xmlMappingFile) {
         try {
             DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();

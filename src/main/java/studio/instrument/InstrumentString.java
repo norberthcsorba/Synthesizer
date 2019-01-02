@@ -60,6 +60,7 @@ class InstrumentString extends Thread {
                 byte[] audioBuffer = generateAudioBuffer();
                 if (!envelopeShaper.isAlive()) {
                     envelopeShaper.start();
+                    Thread.sleep(10);
                 }
                 output.write(audioBuffer, 0, audioBuffer.length);
             }
@@ -70,7 +71,7 @@ class InstrumentString extends Thread {
 
     private byte[] generateAudioBuffer() {
         this.harmonic = 1;
-        float[] floatAudioBuffer = oscillators.parallelStream()
+        float[] floatAudioBuffer = oscillators.stream()
                 .map(osc -> osc.generateAudioBuffer(this.fundamentalPitch * this.harmonic++))
                 .reduce((buffer1, buffer2) -> {
                     for (int sampleNr = 0; sampleNr < buffer1.length && sampleNr < buffer2.length; sampleNr++) {

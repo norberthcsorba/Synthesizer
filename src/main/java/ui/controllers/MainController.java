@@ -2,14 +2,13 @@ package ui.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.SVGPath;
 import javafx.util.StringConverter;
@@ -92,10 +91,10 @@ public class MainController {
         field_releaseTime.textProperty().bindBidirectional(
                 slider_releaseTime.valueProperty(), new EnvelopeShaperStringConverter(slider_releaseTime));
 
-        slider_attackTime.valueProperty().addListener((a,b,c) -> EnvelopeShaper.setAttackTime((short) slider_attackTime.getValue()));
-        slider_decayTime.valueProperty().addListener((a,b,c) -> EnvelopeShaper.setDecayTime((short) slider_decayTime.getValue()));
-        slider_sustainAmp.valueProperty().addListener((a,b,c) -> EnvelopeShaper.setSustainAmp((short) slider_sustainAmp.getValue()));
-        slider_releaseTime.valueProperty().addListener((a,b,c) -> EnvelopeShaper.setReleaseTime((short) slider_releaseTime.getValue()));
+        slider_attackTime.valueProperty().addListener((a, b, c) -> EnvelopeShaper.setAttackTime((short) slider_attackTime.getValue()));
+        slider_decayTime.valueProperty().addListener((a, b, c) -> EnvelopeShaper.setDecayTime((short) slider_decayTime.getValue()));
+        slider_sustainAmp.valueProperty().addListener((a, b, c) -> EnvelopeShaper.setSustainAmp((short) slider_sustainAmp.getValue()));
+        slider_releaseTime.valueProperty().addListener((a, b, c) -> EnvelopeShaper.setReleaseTime((short) slider_releaseTime.getValue()));
     }
 
     private void initPianoView() {
@@ -104,6 +103,9 @@ public class MainController {
             SVGPath pianoKey = new SVGPath();
             pianoKey.setContent(note.getLayout().getSvgPath());
             pianoKey.getStyleClass().addAll("piano-key", note.getLayout().getCssClass());
+            if (note.getKey().equals("")) {
+                pianoKey.getStyleClass().add("unmapped");
+            }
             if (note.getLayout() == PianoKeyboardMapper.KeyLayout.ALTERED) {
                 translateX -= 5;
             }
@@ -112,9 +114,9 @@ public class MainController {
                 translateX -= 5;
             }
             hbox_pianoKeyboard.getChildren().add(pianoKey);
-            hbox_pianoKeyboard.getParent().scaleXProperty().set(0.855);
-            hbox_pianoKeyboard.getParent().setTranslateX(-102);
-            hbox_pianoKeyboard.setScaleX(1.4);
+            hbox_pianoKeyboard.getParent().scaleXProperty().set(0.877);
+            hbox_pianoKeyboard.getParent().setTranslateX(-85);
+            hbox_pianoKeyboard.setScaleX(1.35);
             hbox_pianoKeyboard.setScaleY(1.22);
             hbox_pianoKeyboard.setTranslateX(250);
             hbox_pianoKeyboard.setTranslateY(20);
@@ -155,6 +157,26 @@ public class MainController {
                         hbox_pianoKeyboard.getChildren().get(i).getStyleClass().removeAll("pressed");
                         break;
                     }
+                }
+            }
+        });
+        crtScene.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            System.out.println(event.getCode());
+            switch (event.getCode()) {
+                case F10:
+                    keyboardMapper.shiftMapping(-Constants.OCTAVE_SIZE);
+                    break;
+                case F11:
+                    keyboardMapper.shiftMapping(Constants.OCTAVE_SIZE);
+                    break;
+            }
+
+            hbox_pianoKeyboard.getChildren().forEach(note -> {
+                note.getStyleClass().remove("unmapped");
+            });
+            for (int i = 0; i < keyboardMapper.getMappingList().size(); i++) {
+                if (keyboardMapper.getMappingList().get(i).getKey().equals("")) {
+                    hbox_pianoKeyboard.getChildren().get(i).getStyleClass().add("unmapped");
                 }
             }
         });

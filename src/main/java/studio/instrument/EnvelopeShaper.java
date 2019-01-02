@@ -9,13 +9,9 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.ReentrantLock;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -107,9 +103,9 @@ public class EnvelopeShaper {
     }
 
     private void attack() throws InterruptedException {
-        if(attackTime > 0){
+        if (attackTime > 0) {
             fadeAmplitude(MIN_AMP, MAX_AMP, attackTime, this::isFlag_Release);
-        }else{
+        } else {
             gainControl.setValue(MAX_AMP);
         }
     }
@@ -125,7 +121,7 @@ public class EnvelopeShaper {
     }
 
     private void release() throws InterruptedException {
-        if(releaseTime > 0) {
+        if (releaseTime > 0) {
             fadeAmplitude(gainControl.getValue(), MIN_AMP, releaseTime, this::isFlag_Mute);
         }
     }
