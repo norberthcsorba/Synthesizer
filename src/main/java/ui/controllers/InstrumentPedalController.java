@@ -5,10 +5,11 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.GridPane;
 import javafx.util.StringConverter;
 import lombok.Builder;
 import lombok.Getter;
-import studio.instrument.IMusicalInstrument;
+import studio.instrument.MusicalInstrument;
 import studio.instrument.MusicalInstrumentFactory;
 import utils.exceptions.OscillatorInstantiationException;
 
@@ -18,16 +19,19 @@ class InstrumentPedalController {
 
     private MusicalInstrumentFactory instrumentFactory;
     @Getter
-    private IMusicalInstrument instrument;
+    private MusicalInstrument instrument;
 
+    private GridPane pane_root;
     private ToggleButton btn_bypass;
     private ComboBox<MusicalInstrumentFactory.Blueprint> combo_availableInstruments;
 
 
     @Builder
-    InstrumentPedalController(ToggleButton btn_bypass, ComboBox<MusicalInstrumentFactory.Blueprint> combo_availableInstruments){
+    InstrumentPedalController(ToggleButton btn_bypass, GridPane pane_root,
+                              ComboBox<MusicalInstrumentFactory.Blueprint> combo_availableInstruments){
         this.btn_bypass = btn_bypass;
         this.combo_availableInstruments = combo_availableInstruments;
+        this.pane_root = pane_root;
     }
 
     void initialize(){
@@ -67,5 +71,16 @@ class InstrumentPedalController {
                 new Alert(Alert.AlertType.ERROR, ex.getMessage()).show();
             }
         }
+    }
+
+    boolean handleOnAction_btnBypass() {
+        boolean bypass = !btn_bypass.isSelected();
+        instrument.setBypass(bypass);
+        pane_root.getChildren().forEach(node -> {
+            if(node != btn_bypass.getParent()){
+                node.setDisable(bypass);
+            }
+        });
+        return bypass;
     }
 }

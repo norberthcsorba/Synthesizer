@@ -22,7 +22,7 @@
             <children>
                 <HBox fx:id="hbox_pedalboardPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="250.0" prefWidth="1200.0" styleClass="synth-pane">
                     <children>
-                        <GridPane styleClass="pedal">
+                        <GridPane fx:id="grid_instrumentPedal" styleClass="pedal">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                             </columnConstraints>
@@ -44,7 +44,7 @@
                                 </HBox>
                                 <HBox prefHeight="81.0" prefWidth="150.0" styleClass="head">
                                     <children>
-                                        <ToggleButton fx:id="btn_bypassInstrumentPedal" disable="true" mnemonicParsing="false" selected="true" styleClass="power-btn">
+                                        <ToggleButton fx:id="btn_bypassInstrumentPedal" mnemonicParsing="false" onAction="#handleOnAction_btnBypassInstrumentPedal" selected="true" styleClass="power-btn">
                                             <graphic>
                                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
@@ -149,7 +149,7 @@
                         <String fx:value="piano-keyboard" />
                     </styleClass>
                     <children>
-                        <HBox fx:id="hbox_pianoKeyboard" prefHeight="100.0" prefWidth="200.0" />
+                        <HBox fx:id="hbox_pianoKeyboard" prefHeight="100.0" prefWidth="200.0" styleClass="piano-keyboard" />
                     </children>
                 </HBox>
             </children>

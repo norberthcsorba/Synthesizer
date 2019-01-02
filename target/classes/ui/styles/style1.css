@@ -13,12 +13,17 @@
 
 #hbox_pedalboardPane {
     -fx-pref-height: 400;
+    -fx-min-height: 400;
+    -fx-pref-width: 1200;
+    -fx-min-width: 1200;
     -fx-padding: 10;
-    -fx-spacing: 5;
+    -fx-spacing: 10;
 }
 
 #hbox_pianoPane {
     -fx-pref-height: 150;
+    -fx-min-height: 150;
+    -fx-pref-width: 1200;
     -fx-padding: 10;
 }
 
@@ -42,6 +47,10 @@ Label {
 
 .piano-key.natural.unmapped {
     -fx-fill: #8e8e8e;
+}
+
+.piano-keyboard:disabled .piano-key.natural{
+    -fx-fill: #777777;
 }
 
 /*==============================*/

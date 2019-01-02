@@ -6,6 +6,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import studio.instrument.MusicalInstrumentFactory;
 
@@ -20,6 +21,8 @@ public class MainController {
     //InstrumentPedalController
     private InstrumentPedalController instrumentPedalController;
     @FXML
+    private GridPane grid_instrumentPedal;
+    @FXML
     private ToggleButton btn_bypassInstrumentPedal;
     @FXML
     private ComboBox<MusicalInstrumentFactory.Blueprint> combo_availableInstruments;
@@ -33,6 +36,7 @@ public class MainController {
 
     public void initialize() {
         instrumentPedalController = InstrumentPedalController.builder()
+                .pane_root(grid_instrumentPedal)
                 .btn_bypass(btn_bypassInstrumentPedal)
                 .combo_availableInstruments(combo_availableInstruments)
                 .build();
@@ -65,6 +69,12 @@ public class MainController {
     @FXML
     private void handleOnChange_ComboAvailableInstruments() {
         instrumentPedalController.handleOnChange_comboAvailableInstruments();
+    }
+
+    @FXML
+    private void handleOnAction_btnBypassInstrumentPedal(){
+        boolean bypass = instrumentPedalController.handleOnAction_btnBypass();
+        hbox_pianoKeyboard.setDisable(bypass);
     }
 
 }

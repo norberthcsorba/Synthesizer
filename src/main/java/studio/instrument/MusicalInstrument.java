@@ -1,49 +1,12 @@
 package studio.instrument;
 
-import lombok.Getter;
+public interface MusicalInstrument {
 
-import java.util.List;
-import java.util.Optional;
+    boolean startPlaying(float pitch);
 
-class MusicalInstrument implements IMusicalInstrument {
+    boolean stopPlaying(float pitch);
 
-    @Getter
-    private String name;
-    private List<InstrumentString> strings;
+    void setBypass(boolean bypass);
 
-    MusicalInstrument(String name, List<InstrumentString> strings) {
-        this.name = name;
-        this.strings = strings;
-    }
-
-    public boolean play(float pitch) {
-        boolean pitchAlreadyPlaying = strings.stream().anyMatch(osc -> osc.getFundamentalPitch() == pitch);
-        if (pitchAlreadyPlaying) {
-            return false;
-        }
-        Optional<InstrumentString> availableString = strings.stream()
-                .filter(string -> !string.isBusy())
-                .findAny();
-        if (!availableString.isPresent()) {
-            return false;
-        }
-        availableString.get().setFundamentalPitch(pitch);
-        return true;
-    }
-
-    public boolean stop(float pitch) {
-        Optional<InstrumentString> playingString = strings.stream()
-                .filter(string -> string.getFundamentalPitch() == pitch)
-                .findAny();
-        if (!playingString.isPresent()) {
-            return false;
-        }
-        playingString.get().setFundamentalPitch(InstrumentString.NULL_PITCH);
-        return true;
-    }
-
-    @Override
-    public void cleanUp() {
-        //strings.forEach(WaveOscillator::cleanUp);
-    }
+    void cleanUp();
 }

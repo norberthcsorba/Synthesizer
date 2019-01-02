@@ -30,8 +30,8 @@ public class MusicalInstrumentFactory {
         loadAvailableInstruments();
     }
 
-    public MusicalInstrument createFromBlueprint(Blueprint blueprint) {
-        return new MusicalInstrument(blueprint.name, newStrings(blueprint));
+    public MusicalInstrumentImpl createFromBlueprint(Blueprint blueprint) {
+        return new MusicalInstrumentImpl(blueprint.name, newStrings(blueprint));
     }
 
     private List<WaveOscillator> newOscillatorList(Blueprint blueprint) {

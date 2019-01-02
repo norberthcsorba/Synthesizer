@@ -50,18 +50,21 @@ class PianoKeyboardController {
                 pianoKey.getStyleClass().add("unmapped");
             }
             if (note.getLayout() == PianoKeyboardMapper.KeyLayout.ALTERED) {
-                translateX -= 5;
+                translateX -= 6;
             }
             pianoKey.setTranslateX(translateX);
             if (note.getLayout() == PianoKeyboardMapper.KeyLayout.ALTERED) {
-                translateX -= 5;
+                translateX -= 6;
+            }
+            if (note.getLayout() == PianoKeyboardMapper.KeyLayout.NATURAL_RIGHT) {
+                translateX -= 2;
             }
             hbox_pianoKeyboard.getChildren().add(pianoKey);
             hbox_pianoKeyboard.getParent().scaleXProperty().set(0.877);
             hbox_pianoKeyboard.getParent().setTranslateX(-85);
             hbox_pianoKeyboard.setScaleX(1.35);
             hbox_pianoKeyboard.setScaleY(1.22);
-            hbox_pianoKeyboard.setTranslateX(250);
+            hbox_pianoKeyboard.setTranslateX(290);
             hbox_pianoKeyboard.setTranslateY(20);
         }
     }
@@ -71,7 +74,7 @@ class PianoKeyboardController {
         PianoKeyboardMapper.KeyMapping mapping = keyboardMapper.getMappingTable().get(keyPressed);
         if (mapping != null) {
             float pitchToPlay = mapping.getPitch();
-            boolean pitchCouldBePlayed = instrumentPedalController.getInstrument().play(pitchToPlay);
+            boolean pitchCouldBePlayed = instrumentPedalController.getInstrument().startPlaying(pitchToPlay);
             if (!pitchCouldBePlayed) {
                 return;
             }
@@ -91,7 +94,7 @@ class PianoKeyboardController {
         PianoKeyboardMapper.KeyMapping mapping = keyboardMapper.getMappingTable().get(keyPressed);
         if (mapping != null) {
             float pitchToPlay = mapping.getPitch();
-            boolean pitchCouldBePlayed = instrumentPedalController.getInstrument().stop(pitchToPlay);
+            boolean pitchCouldBePlayed = instrumentPedalController.getInstrument().stopPlaying(pitchToPlay);
             if (!pitchCouldBePlayed) {
                 return;
             }
