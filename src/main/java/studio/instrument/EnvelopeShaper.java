@@ -1,5 +1,7 @@
 package studio.instrument;
 
+import javafx.util.Callback;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import utils.Constants;
@@ -12,6 +14,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -23,39 +26,34 @@ public class EnvelopeShaper {
     private InstrumentString instrumentString;
     private ExecutorService executor;
     private Future<?> threadHandler;
+    @Setter
+    private static Consumer<Envelope> onEnvelopeChange;
+    @Getter
+    private static Envelope envelope;
     @Getter
     private boolean flag_Attack, flag_Release, flag_Mute;
-    @Getter
-    @Setter
-    private static short attackTime = 50;
-    @Getter
-    @Setter
-    private static short decayTime = 50;
-    @Getter
-    @Setter
-    private static float sustainAmp = -1.0f;
-    @Getter
-    @Setter
-    private static boolean hasDecayAndSustain = true;
-    @Getter
-    @Setter
-    private static short releaseTime = 100;
-
     private static final float MAX_AMP = -1.0f;
     private static final float MIN_AMP = -40.0f;
 
-    public EnvelopeShaper(InstrumentString instrumentString, SourceDataLine output) {
+    EnvelopeShaper(InstrumentString instrumentString, SourceDataLine output) {
         this.instrumentString = instrumentString;
         this.output = output;
         this.gainControl = (FloatControl) output.getControl(FloatControl.Type.MASTER_GAIN);
         this.executor = Executors.newSingleThreadExecutor();
     }
 
-    public boolean isAlive() {
+    static void setEnvelope(Envelope envelope){
+        EnvelopeShaper.envelope = envelope;
+        if(onEnvelopeChange != null){
+            onEnvelopeChange.accept(envelope);
+        }
+    }
+
+    boolean isAlive() {
         return threadHandler != null && !threadHandler.isDone();
     }
 
-    public void interrupt() {
+    void interrupt() {
         if (threadHandler != null) {
             threadHandler.cancel(true);
         }
@@ -72,19 +70,18 @@ public class EnvelopeShaper {
         executor.shutdownNow();
     }
 
-    public void start() {
+    void start() {
         threadHandler = executor.submit(() -> {
             try {
                 attack();
                 System.out.println("attack finished");
-                if (!hasDecayAndSustain) {
+                if (!envelope.hasDecayAndSustain) {
                     instrumentString.setFundamentalPitch(InstrumentString.NULL_PITCH);
                     throw new InterruptedException();
                 }
                 decay();
                 System.out.println("decay finished");
                 sustain();
-                System.out.println("sustain finished");
             } catch (InterruptedException ex1) {
                 try {
                     release();
@@ -93,7 +90,7 @@ public class EnvelopeShaper {
                     System.out.println("mute finished");
                 } catch (InterruptedException ex2) {
                     mute();
-//                    System.out.println("mute finished");
+                    System.out.println("mute finished");
                     flag_Attack = true;
                 }
             }
@@ -101,8 +98,8 @@ public class EnvelopeShaper {
     }
 
     private void attack() throws InterruptedException {
-        if (attackTime > 0) {
-            fadeAmplitude(MIN_AMP, MAX_AMP, attackTime, this::isFlag_Release);
+        if (envelope.attackTime > 0) {
+            fadeAmplitude(MIN_AMP, MAX_AMP, envelope.attackTime, this::isFlag_Release);
         } else {
             gainControl.setValue(MAX_AMP);
             checkInterruptFlag(this::isFlag_Release);
@@ -110,18 +107,23 @@ public class EnvelopeShaper {
     }
 
     private void decay() throws InterruptedException {
-//        fadeAmplitude(gainControl.getValue(), sustainAmp, decayTime, flag_Release);
+        if (envelope.decayTime > 0) {
+            fadeAmplitude(gainControl.getValue(), envelope.sustainAmp, envelope.decayTime, this::isFlag_Release);
+        } else {
+            gainControl.setValue(envelope.sustainAmp);
+            checkInterruptFlag(this::isFlag_Release);
+        }
     }
 
     private void sustain() throws InterruptedException {
         synchronized (instrumentString.lock) {
-            instrumentString.lock.wait(); //wait until interrupted
+            instrumentString.lock.wait();
         }
     }
 
     private void release() throws InterruptedException {
-        if (releaseTime > 0) {
-            fadeAmplitude(gainControl.getValue(), MIN_AMP, releaseTime, this::isFlag_Mute);
+        if (envelope.releaseTime > 0) {
+            fadeAmplitude(gainControl.getValue(), MIN_AMP, envelope.releaseTime, this::isFlag_Mute);
         }
     }
 
@@ -142,9 +144,6 @@ public class EnvelopeShaper {
     }
 
     private void fadeAmplitude(float startAmp, float targetAmp, short availableTime, Supplier<Boolean> interruptFlag) throws InterruptedException {
-        final float availableTimeInSamples = availableTime * Constants.nrOfSamplesPerMilis();
-        final float linAmpStepPerSample = (targetAmp - startAmp) / availableTimeInSamples;
-
         Predicate<Float> crtAmpHasNotReachedTarget = startAmp < targetAmp ? crtAmp -> crtAmp < targetAmp : crtAmp -> crtAmp > targetAmp;
         Function<Float, Float> incrementCrtAmp = startAmp < targetAmp ? crtAmp -> crtAmp + 1 : crtAmp -> crtAmp - 1;
 
@@ -155,43 +154,18 @@ public class EnvelopeShaper {
         }
         f.put(targetAmp, -lin2log(-targetAmp, -startAmp, -targetAmp));
 
-        synchronized (instrumentString.lock) {
-            long deltaSamples;
-            long startFramePosition = output.getLongFramePosition();
-            while ((deltaSamples = output.getLongFramePosition() - startFramePosition) < availableTimeInSamples) {
-                float linCrtAmp = startAmp + deltaSamples * linAmpStepPerSample;
-                linCrtAmp = crtAmpHasNotReachedTarget.test(linCrtAmp) ? linCrtAmp : targetAmp;
-                float logCrtAmp = f.get((float) Math.round(linCrtAmp));
-                gainControl.setValue(logCrtAmp);
-                checkInterruptFlag(interruptFlag);
-            }
-        }
-
-//        ReentrantLock lock = new ReentrantLock();
-//        Condition condition = lock.newCondition();
-//        final float linAmpStepPerMilis = (targetAmp - startAmp) / availableTime;
-//        final long startTime = System.currentTimeMillis();
-//        Timer timer = new Timer();
-//        timer.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                final long dT = System.currentTimeMillis() - startTime;
-//                float linCrtAmp = startAmp + dT * linAmpStepPerMilis;
-//                linCrtAmp = crtAmpHasNotReachedTarget.test(linCrtAmp) ? linCrtAmp : targetAmp;
-//                System.out.println(linCrtAmp);
-//                float logCrtAmp = f.get((float)Math.round(linCrtAmp));
-//                gainControl.setValue(logCrtAmp);
-//                if(dT > availableTime){
-//                    lock.lock();
-//                    condition.signal();
-//                    lock.unlock();
-//                }
-//            }
-//        },0, 20);
-//        lock.lock();
-//        condition.await();
-//        lock.unlock();
-//        timer.cancel();
+        final float linAmpStepPerMilis = (targetAmp - startAmp) / availableTime;
+        final long startTime = System.currentTimeMillis();
+        float linCrtAmp;
+        do {
+            Thread.sleep(10);
+            final long dT = System.currentTimeMillis() - startTime;
+            linCrtAmp = startAmp + dT * linAmpStepPerMilis;
+            linCrtAmp = crtAmpHasNotReachedTarget.test(linCrtAmp) ? linCrtAmp : targetAmp;
+            System.out.println(linCrtAmp);
+            float logCrtAmp = f.get((float) Math.round(linCrtAmp));
+            gainControl.setValue(logCrtAmp);
+        } while (crtAmpHasNotReachedTarget.test(linCrtAmp));
     }
 
 
@@ -205,6 +179,18 @@ public class EnvelopeShaper {
         if (interruptFlag.get()) {
             throw new InterruptedException();
         }
+    }
+
+
+    @Getter
+    @Setter
+    @Builder
+    public static class Envelope {
+        private short attackTime = 50;
+        private short decayTime = 50;
+        private float sustainAmp = -1.0f;
+        private short releaseTime = 100;
+        private boolean hasDecayAndSustain = true;
     }
 
 //    private int toIntAudioSample(byte[] audioBuffer, int pos) {

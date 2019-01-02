@@ -2,13 +2,10 @@ package ui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import studio.instrument.MusicalInstrumentFactory;
+import studio.instrument.Blueprint;
 
 public class MainController {
 
@@ -25,10 +22,12 @@ public class MainController {
     @FXML
     private ToggleButton btn_bypassInstrumentPedal;
     @FXML
-    private ComboBox<MusicalInstrumentFactory.Blueprint> combo_availableInstruments;
+    private ComboBox<Blueprint> combo_availableInstruments;
 
     //EnvelopePedal
     private EnvelopeShaperPedalController envelopeShaperPedalController;
+    @FXML
+    private CheckBox check_hasDecayAndSustain;
     @FXML
     private Slider slider_attackTime, slider_decayTime, slider_sustainAmp, slider_releaseTime;
     @FXML
@@ -52,6 +51,7 @@ public class MainController {
                 .slider_decayTime(slider_decayTime)
                 .slider_sustainAmp(slider_sustainAmp)
                 .slider_releaseTime(slider_releaseTime)
+                .check_hasDecayAndSustain(check_hasDecayAndSustain)
                 .build();
         envelopeShaperPedalController.initialize();
     }
@@ -72,7 +72,7 @@ public class MainController {
     }
 
     @FXML
-    private void handleOnAction_btnBypassInstrumentPedal(){
+    private void handleOnAction_btnBypassInstrumentPedal() {
         boolean bypass = instrumentPedalController.handleOnAction_btnBypass();
         hbox_pianoKeyboard.setDisable(bypass);
     }

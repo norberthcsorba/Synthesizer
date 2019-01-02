@@ -44,7 +44,7 @@ class MusicalInstrumentImpl implements MusicalInstrument {
                 .filter(string -> string.getFundamentalPitch() == pitch)
                 .findAny();
         if (!playingString.isPresent()) {
-            return false;
+            return true;
         }
         playingString.get().setFundamentalPitch(InstrumentString.NULL_PITCH);
         return true;

@@ -158,3 +158,20 @@ Label {
 .pedal ComboBox .arrow {
     -fx-background-color: #ea7b1d;
 }
+
+.pedal .check-box .box {
+    -fx-background-color: #454545;
+}
+
+.pedal .check-box:selected .box .mark{
+    -fx-background-color: #ea7b1d;
+}
+
+.pedal .check-box .text{
+    -fx-fill: #ea7b1d;
+}
+
+/*=====================*/
+/*particular pedals*/
+#grid_envelopeShaperPedal{
+}

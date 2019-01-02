@@ -8,7 +8,7 @@ import javafx.scene.shape.SVGPath;
 import lombok.Builder;
 import ui.utils.PianoKeyboardMapper;
 import utils.Constants;
-import utils.exceptions.XmlParseException;
+import utils.exceptions.ObjectInstantiationException;
 
 import java.io.File;
 
@@ -35,7 +35,7 @@ class PianoKeyboardController {
             crtScene.setOnKeyPressed(this::handleKeyPressed);
             crtScene.setOnKeyReleased(this::handleKeyReleased);
             crtScene.addEventFilter(KeyEvent.KEY_PRESSED, this::handleShiftMapping);
-        } catch (XmlParseException ex) {
+        } catch (ObjectInstantiationException ex) {
             new Alert(Alert.AlertType.ERROR, ex.getMessage()).show();
         }
     }

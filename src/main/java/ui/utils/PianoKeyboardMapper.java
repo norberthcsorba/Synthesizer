@@ -5,6 +5,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import utils.exceptions.ExceptionMessages;
+import utils.exceptions.ObjectInstantiationException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -117,7 +119,7 @@ public class PianoKeyboardMapper {
                 }
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
+            throw new ObjectInstantiationException(ExceptionMessages.PIANO_KEYBOARD_MAPPING_LOAD_ERROR);
         }
     }
 

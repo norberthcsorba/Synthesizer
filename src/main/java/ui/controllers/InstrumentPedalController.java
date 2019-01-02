@@ -9,9 +9,10 @@ import javafx.scene.layout.GridPane;
 import javafx.util.StringConverter;
 import lombok.Builder;
 import lombok.Getter;
+import studio.instrument.Blueprint;
 import studio.instrument.MusicalInstrument;
 import studio.instrument.MusicalInstrumentFactory;
-import utils.exceptions.OscillatorInstantiationException;
+import utils.exceptions.ObjectInstantiationException;
 
 import java.util.List;
 
@@ -23,12 +24,12 @@ class InstrumentPedalController {
 
     private GridPane pane_root;
     private ToggleButton btn_bypass;
-    private ComboBox<MusicalInstrumentFactory.Blueprint> combo_availableInstruments;
+    private ComboBox<Blueprint> combo_availableInstruments;
 
 
     @Builder
     InstrumentPedalController(ToggleButton btn_bypass, GridPane pane_root,
-                              ComboBox<MusicalInstrumentFactory.Blueprint> combo_availableInstruments){
+                              ComboBox<Blueprint> combo_availableInstruments){
         this.btn_bypass = btn_bypass;
         this.combo_availableInstruments = combo_availableInstruments;
         this.pane_root = pane_root;
@@ -36,10 +37,10 @@ class InstrumentPedalController {
 
     void initialize(){
         instrumentFactory = new MusicalInstrumentFactory();
-        List<MusicalInstrumentFactory.Blueprint> availableInstruments = instrumentFactory.getAvailableInstruments();
+        List<Blueprint> availableInstruments = instrumentFactory.getAvailableInstruments();
         combo_availableInstruments.setConverter(new StringConverter<>() {
             @Override
-            public String toString(MusicalInstrumentFactory.Blueprint object) {
+            public String toString(Blueprint object) {
                 if (object != null) {
                     return object.getName();
                 }
@@ -47,13 +48,13 @@ class InstrumentPedalController {
             }
 
             @Override
-            public MusicalInstrumentFactory.Blueprint fromString(String string) {
+            public Blueprint fromString(String string) {
                 return combo_availableInstruments.getItems().stream()
                         .filter(instrument -> instrument.getName().equals(string))
                         .findFirst().orElse(null);
             }
         });
-        ObservableList<MusicalInstrumentFactory.Blueprint> observableList = FXCollections.observableArrayList();
+        ObservableList<Blueprint> observableList = FXCollections.observableArrayList();
         observableList.addAll(availableInstruments);
         combo_availableInstruments.setItems(observableList);
         if (availableInstruments.size() > 0) {
@@ -63,11 +64,11 @@ class InstrumentPedalController {
     }
 
     void handleOnChange_comboAvailableInstruments(){
-        MusicalInstrumentFactory.Blueprint instrumentToLoad = combo_availableInstruments.getValue();
+        Blueprint instrumentToLoad = combo_availableInstruments.getValue();
         if (instrumentToLoad != null) {
             try {
                 this.instrument = instrumentFactory.createFromBlueprint(instrumentToLoad);
-            } catch (OscillatorInstantiationException ex) {
+            } catch (ObjectInstantiationException ex) {
                 new Alert(Alert.AlertType.ERROR, ex.getMessage()).show();
             }
         }

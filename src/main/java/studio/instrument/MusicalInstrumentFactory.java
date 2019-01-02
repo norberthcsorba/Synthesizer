@@ -1,21 +1,13 @@
 package studio.instrument;
 
 import lombok.Getter;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 import studio.oscillators.WaveOscillator;
 import utils.Constants;
 import utils.exceptions.ExceptionMessages;
-import utils.exceptions.OscillatorInstantiationException;
-import utils.exceptions.XmlParseException;
+import utils.exceptions.ObjectInstantiationException;
 
 import javax.sound.sampled.*;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,13 +23,14 @@ public class MusicalInstrumentFactory {
     }
 
     public MusicalInstrumentImpl createFromBlueprint(Blueprint blueprint) {
-        return new MusicalInstrumentImpl(blueprint.name, newStrings(blueprint));
+        EnvelopeShaper.setEnvelope(blueprint.getEnvelope());
+        return new MusicalInstrumentImpl(blueprint.getName(), newStrings(blueprint));
     }
 
     private List<WaveOscillator> newOscillatorList(Blueprint blueprint) {
         List<WaveOscillator> oscillators = new ArrayList<>();
         try {
-            Class<?> oscClass = Class.forName(waveOscillatorClassName(blueprint.oscType));
+            Class<?> oscClass = Class.forName(waveOscillatorClassName(blueprint.getOscType()));
             for (Float harmonicAmp : blueprint.getHarmonicAmplitudes()) {
                 WaveOscillator osc = (WaveOscillator) oscClass.getDeclaredConstructor().newInstance();
                 osc.setAmplitude(harmonicAmp);
@@ -45,7 +38,7 @@ public class MusicalInstrumentFactory {
             }
         } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException ex) {
             ex.printStackTrace();
-            throw new OscillatorInstantiationException(ExceptionMessages.OSC_COULD_NOT_BE_INSTANTIATED);
+            throw new ObjectInstantiationException(ExceptionMessages.OSC_COULD_NOT_BE_INSTANTIATED);
         }
         return Collections.unmodifiableList(oscillators);
     }
@@ -67,7 +60,7 @@ public class MusicalInstrumentFactory {
 
     private List<InstrumentString> newStrings(Blueprint blueprint) {
         List<InstrumentString> strings = new ArrayList<>();
-        for (int i = 0; i < blueprint.polyphony; i++) {
+        for (int i = 0; i < blueprint.getPolyphony(); i++) {
             InstrumentString string = new InstrumentString(newOutput(), newOscillatorList(blueprint));
             string.setDaemon(true);
             string.start();
@@ -79,54 +72,18 @@ public class MusicalInstrumentFactory {
     private void loadAvailableInstruments() {
         this.availableInstruments = new ArrayList<>();
         File instrumentsFolder = new File(Constants.INSTRUMENTS_FOLDER_PATH);
-        for (File file : instrumentsFolder.listFiles()) {
-            Blueprint blueprint = parseXmlBlueprintFile(file);
-            if (blueprint != null) {
-                this.availableInstruments.add(blueprint);
-            }
-        }
-    }
-
-    private Blueprint parseXmlBlueprintFile(File xmlBlueprintFile) {
         try {
-            Blueprint blueprint = new Blueprint();
-            blueprint.filePath = xmlBlueprintFile.getPath();
-            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            Document doc = documentBuilder.parse(xmlBlueprintFile);
-            doc.getDocumentElement().normalize();
-            NodeList nameNodes = doc.getElementsByTagName("name");
-            NodeList oscNodes = doc.getElementsByTagName("oscillator");
-            NodeList poliphonyNodes = doc.getElementsByTagName("polyphony");
-            NodeList harmonicNodes = doc.getElementsByTagName("harmonic");
-            if (nameNodes.getLength() != 1 || oscNodes.getLength() != 1 || poliphonyNodes.getLength() != 1
-                    || harmonicNodes.getLength() < 1) {
-                throw new XmlParseException(ExceptionMessages.BLUEPRINT_IS_NOT_WELL_FORMED);
-            }
-
-            blueprint.name = nameNodes.item(0).getTextContent();
-            blueprint.oscType = oscNodes.item(0).getTextContent();
-            if (blueprint.name == null || blueprint.oscType == null) {
-                throw new XmlParseException(ExceptionMessages.BLUEPRINT_IS_NOT_WELL_FORMED);
-            }
-            try {
-                blueprint.polyphony = Byte.parseByte(poliphonyNodes.item(0).getTextContent());
-
-                List<Float> harmonicAmplitudes = new ArrayList<>();
-                for (int i = 0; i < harmonicNodes.getLength(); i++) {
-                    float harmonicAmplitude = Float.parseFloat(harmonicNodes.item(i).getAttributes().getNamedItem("amplitude").getNodeValue());
-                    harmonicAmplitudes.add(harmonicAmplitude);
+            File[] files = instrumentsFolder.listFiles();
+            for (File file : files) {
+                Blueprint blueprint = MusicalInstrumentBlueprintParser.parseXmlBlueprintFile(file);
+                if (blueprint != null) {
+                    this.availableInstruments.add(blueprint);
                 }
-                blueprint.harmonicAmplitudes = harmonicAmplitudes;
-            } catch (NumberFormatException ex) {
-                throw new XmlParseException(ExceptionMessages.BLUEPRINT_IS_NOT_WELL_FORMED);
             }
-
-            return blueprint;
-        } catch (IOException | SAXException | ParserConfigurationException ex) {
-            ex.printStackTrace();
-            return null;
+        } catch (NullPointerException ex) {
+            throw new ObjectInstantiationException(ExceptionMessages.INSTRUMENTS_FOLDER_NOT_FOUND_OR_EMPTY);
         }
+
     }
 
     private String waveOscillatorClassName(String oscType) {
@@ -138,12 +95,4 @@ public class MusicalInstrumentFactory {
         return className.toString();
     }
 
-    @Getter
-    public static class Blueprint {
-        private String name;
-        private String oscType;
-        private byte polyphony;
-        private String filePath;
-        private List<Float> harmonicAmplitudes;
-    }
 }
