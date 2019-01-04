@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import studio.instrument.Blueprint;
 
 public class MainController {
@@ -33,6 +34,20 @@ public class MainController {
     @FXML
     private TextField field_attackTime, field_decayTime, field_sustainAmp, field_releaseTime;
 
+    //DistortionPedal
+    private DistortionPedalController distortionPedalController;
+    @FXML
+    private ToggleButton btn_bypassDistPedal;
+    @FXML
+    private GridPane grid_distortionPedal;
+    @FXML
+    private Slider slider_distPreGain, slider_distPostGain;
+    @FXML
+    private TextField field_distPreGain, field_distPostGain;
+    @FXML
+    private VBox vbox_distTypes;
+
+
     public void initialize() {
         instrumentPedalController = InstrumentPedalController.builder()
                 .pane_root(grid_instrumentPedal)
@@ -54,6 +69,17 @@ public class MainController {
                 .check_hasDecayAndSustain(check_hasDecayAndSustain)
                 .build();
         envelopeShaperPedalController.initialize();
+
+        distortionPedalController = DistortionPedalController.builder()
+                .pane_root(grid_distortionPedal)
+                .btn_bypass(btn_bypassDistPedal)
+                .slider_preGain(slider_distPreGain)
+                .slider_postGain(slider_distPostGain)
+                .field_preGain(field_distPreGain)
+                .field_postGain(field_distPostGain)
+                .vbox_distTypes(vbox_distTypes)
+                .build();
+        distortionPedalController.initialize();
     }
 
 
@@ -75,6 +101,11 @@ public class MainController {
     private void handleOnAction_btnBypassInstrumentPedal() {
         boolean bypass = instrumentPedalController.handleOnAction_btnBypass();
         hbox_pianoKeyboard.setDisable(bypass);
+    }
+
+    @FXML
+    private void handleOnAction_btnBypassDistortionPedal() {
+        distortionPedalController.handleOnAction_btnBypass();
     }
 
 }

@@ -5,7 +5,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.util.StringConverter;
 import lombok.Builder;
-import studio.instrument.EnvelopeShaper;
+import studio.effects.EnvelopeShaper;
 
 class EnvelopeShaperPedalController {
 
@@ -42,25 +42,18 @@ class EnvelopeShaperPedalController {
         slider_decayTime.valueProperty().addListener((a, b, c) -> EnvelopeShaper.getEnvelope().setDecayTime((short) slider_decayTime.getValue()));
         slider_sustainAmp.valueProperty().addListener((a, b, c) -> EnvelopeShaper.getEnvelope().setSustainAmp((short) slider_sustainAmp.getValue()));
         slider_releaseTime.valueProperty().addListener((a, b, c) -> EnvelopeShaper.getEnvelope().setReleaseTime((short) slider_releaseTime.getValue()));
-        check_hasDecayAndSustain.selectedProperty().addListener((a,b,c)-> {
-            System.out.println(check_hasDecayAndSustain.isSelected());
-            EnvelopeShaper.getEnvelope().setHasDecayAndSustain(check_hasDecayAndSustain.isSelected());
-        });
+        check_hasDecayAndSustain.selectedProperty().addListener((a, b, c) -> EnvelopeShaper.getEnvelope().setHasDecayAndSustain(check_hasDecayAndSustain.isSelected()));
 
+        updateProperties();
+        EnvelopeShaper.setOnEnvelopeChange(a -> updateProperties());
+    }
+
+    private void updateProperties() {
         slider_attackTime.setValue(EnvelopeShaper.getEnvelope().getAttackTime());
         slider_decayTime.setValue(EnvelopeShaper.getEnvelope().getDecayTime());
         slider_sustainAmp.setValue(EnvelopeShaper.getEnvelope().getSustainAmp());
         slider_releaseTime.setValue(EnvelopeShaper.getEnvelope().getReleaseTime());
         check_hasDecayAndSustain.setSelected(EnvelopeShaper.getEnvelope().isHasDecayAndSustain());
-
-        EnvelopeShaper.setOnEnvelopeChange(newEnvelope -> {
-            slider_attackTime.setValue(newEnvelope.getAttackTime());
-            slider_decayTime.setValue(newEnvelope.getDecayTime());
-            slider_sustainAmp.setValue(newEnvelope.getSustainAmp());
-            slider_releaseTime.setValue(newEnvelope.getReleaseTime());
-            System.out.println(newEnvelope.isHasDecayAndSustain() + "a");
-            check_hasDecayAndSustain.setSelected(newEnvelope.isHasDecayAndSustain());
-        });
     }
 
 

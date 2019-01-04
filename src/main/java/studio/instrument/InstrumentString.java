@@ -1,18 +1,21 @@
 package studio.instrument;
 
 import lombok.Getter;
+import studio.effects.AudioEffect;
 import studio.oscillators.WaveOscillator;
+import studio.utils.SampleConverter;
 import utils.Constants;
 
 import javax.sound.sampled.SourceDataLine;
 import java.util.List;
 
-class InstrumentString extends Thread {
+public class InstrumentString extends Thread {
 
-    final Object lock;
-    static final float NULL_PITCH = 0.0f;
+    public static final float NULL_PITCH = 0.0f;
+    @Getter
+    private final Object lock;
     private SourceDataLine output;
-    private EnvelopeShaper envelopeShaper;
+    private List<AudioEffect> effects;
     private List<WaveOscillator> oscillators;
     @Getter
     private boolean busy;
@@ -20,18 +23,18 @@ class InstrumentString extends Thread {
     private float fundamentalPitch;
     private byte harmonic;
 
-    InstrumentString(SourceDataLine output, List<WaveOscillator> oscillators) {
+    InstrumentString(SourceDataLine output, List<WaveOscillator> oscillators, List<AudioEffect> effects) {
         this.output = output;
         this.lock = new Object();
-        this.envelopeShaper = new EnvelopeShaper(this, output);
+        this.effects = effects;
         this.oscillators = oscillators;
         this.fundamentalPitch = NULL_PITCH;
         this.busy = false;
     }
 
-    void setFundamentalPitch(float fundamentalPitch) {
+    public void setFundamentalPitch(float fundamentalPitch) {
         synchronized (lock) {
-            envelopeShaper.interrupt();
+            effects.forEach(AudioEffect::interrput);
             if (fundamentalPitch == NULL_PITCH) {
                 busy = false;
             } else {
@@ -53,10 +56,13 @@ class InstrumentString extends Thread {
                 }
                 byte[] audioBuffer = generateAudioBuffer();
                 synchronized (lock) {
-                    if (!envelopeShaper.isAlive()) {
-                        envelopeShaper.start();
-                        Thread.sleep(10);
-                    }
+                    effects.forEach(effect -> {
+                        if (!effect.isAlive()) {
+                            effect.setAudioBuffer(audioBuffer);
+                            effect.start();
+                        }
+                    });
+                    Thread.sleep(10);
                 }
                 output.write(audioBuffer, 0, audioBuffer.length);
             }
@@ -78,17 +84,14 @@ class InstrumentString extends Thread {
         return convertToByteAudioBuffer(floatAudioBuffer);
     }
 
-    private float denormalizeSample(float sample) {
-        return (float) (Math.pow(2, Constants.BIT_DEPTH - 1) - 1) * sample;
-    }
 
     private byte[] convertToByteAudioBuffer(float[] floatBuffer) {
         int byteDepth = Constants.BIT_DEPTH / 8;
         byte[] byteBuffer = new byte[floatBuffer.length * byteDepth];
         for (int i = 0, j = 0; i < floatBuffer.length; i++, j += 2) {
-            int sample = (int) denormalizeSample(floatBuffer[i]);
-            byteBuffer[j] = (byte) ((sample >> 8) & 0xff);
-            byteBuffer[j + 1] = (byte) (sample & 0xff);
+            byte[] byteSample = SampleConverter.toByteAudioSample(floatBuffer[i]);
+            byteBuffer[j] = byteSample[0];
+            byteBuffer[j + 1] = byteSample[1];
         }
         return byteBuffer;
     }

@@ -19,7 +19,7 @@ class MusicalInstrumentImpl implements MusicalInstrument {
     }
 
     public boolean startPlaying(float pitch) {
-        if(bypass){
+        if (bypass) {
             return false;
         }
         boolean pitchAlreadyPlaying = strings.stream().anyMatch(osc -> osc.getFundamentalPitch() == pitch);
@@ -37,7 +37,7 @@ class MusicalInstrumentImpl implements MusicalInstrument {
     }
 
     public boolean stopPlaying(float pitch) {
-        if(bypass){
+        if (bypass) {
             return false;
         }
         Optional<InstrumentString> playingString = strings.stream()

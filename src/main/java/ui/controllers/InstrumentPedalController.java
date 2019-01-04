@@ -29,13 +29,13 @@ class InstrumentPedalController {
 
     @Builder
     InstrumentPedalController(ToggleButton btn_bypass, GridPane pane_root,
-                              ComboBox<Blueprint> combo_availableInstruments){
+                              ComboBox<Blueprint> combo_availableInstruments) {
         this.btn_bypass = btn_bypass;
         this.combo_availableInstruments = combo_availableInstruments;
         this.pane_root = pane_root;
     }
 
-    void initialize(){
+    void initialize() {
         instrumentFactory = new MusicalInstrumentFactory();
         List<Blueprint> availableInstruments = instrumentFactory.getAvailableInstruments();
         combo_availableInstruments.setConverter(new StringConverter<>() {
@@ -63,7 +63,7 @@ class InstrumentPedalController {
         }
     }
 
-    void handleOnChange_comboAvailableInstruments(){
+    void handleOnChange_comboAvailableInstruments() {
         Blueprint instrumentToLoad = combo_availableInstruments.getValue();
         if (instrumentToLoad != null) {
             try {
@@ -78,7 +78,7 @@ class InstrumentPedalController {
         boolean bypass = !btn_bypass.isSelected();
         instrument.setBypass(bypass);
         pane_root.getChildren().forEach(node -> {
-            if(node != btn_bypass.getParent()){
+            if (node != btn_bypass.getParent()) {
                 node.setDisable(bypass);
             }
         });

@@ -21,8 +21,8 @@ class PianoKeyboardController {
     private HBox hbox_pianoKeyboard;
 
     @Builder
-    public PianoKeyboardController(InstrumentPedalController instrumentPedalController, Scene crtScene,
-                                   HBox hbox_pianoKeyboard) {
+    PianoKeyboardController(InstrumentPedalController instrumentPedalController, Scene crtScene,
+                            HBox hbox_pianoKeyboard) {
         this.instrumentPedalController = instrumentPedalController;
         this.crtScene = crtScene;
         this.hbox_pianoKeyboard = hbox_pianoKeyboard;
@@ -50,6 +50,7 @@ class PianoKeyboardController {
                 pianoKey.getStyleClass().add("unmapped");
             }
             if (note.getLayout() == PianoKeyboardMapper.KeyLayout.ALTERED) {
+                pianoKey.setTranslateY(1);
                 translateX -= 6;
             }
             pianoKey.setTranslateX(translateX);
@@ -89,7 +90,6 @@ class PianoKeyboardController {
     }
 
     private void handleKeyReleased(KeyEvent event) {
-        System.out.println(event.getCode() + " (released)");
         String keyPressed = event.getCode().getChar().toLowerCase();
         PianoKeyboardMapper.KeyMapping mapping = keyboardMapper.getMappingTable().get(keyPressed);
         if (mapping != null) {

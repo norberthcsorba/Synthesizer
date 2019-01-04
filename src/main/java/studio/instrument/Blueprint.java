@@ -2,6 +2,7 @@ package studio.instrument;
 
 import lombok.Builder;
 import lombok.Getter;
+import studio.effects.EnvelopeShaper;
 
 import java.util.List;
 

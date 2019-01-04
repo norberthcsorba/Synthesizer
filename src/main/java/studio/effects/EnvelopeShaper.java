@@ -1,9 +1,9 @@
-package studio.instrument;
+package studio.effects;
 
-import javafx.util.Callback;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import studio.instrument.InstrumentString;
 import utils.Constants;
 
 import javax.sound.sampled.FloatControl;
@@ -11,23 +11,18 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-public class EnvelopeShaper {
+public class EnvelopeShaper extends AudioEffect {
 
-    private SourceDataLine output;
     private FloatControl gainControl;
-    private InstrumentString instrumentString;
-    private ExecutorService executor;
-    private Future<?> threadHandler;
     @Setter
-    private static Consumer<Envelope> onEnvelopeChange;
+    private InstrumentString instrumentString;
+    @Setter
+    private static Consumer<Void> onEnvelopeChange;
     @Getter
     private static Envelope envelope;
     @Getter
@@ -35,28 +30,20 @@ public class EnvelopeShaper {
     private static final float MAX_AMP = -1.0f;
     private static final float MIN_AMP = -40.0f;
 
-    EnvelopeShaper(InstrumentString instrumentString, SourceDataLine output) {
-        this.instrumentString = instrumentString;
-        this.output = output;
+    public EnvelopeShaper(SourceDataLine output) {
+        super(output);
         this.gainControl = (FloatControl) output.getControl(FloatControl.Type.MASTER_GAIN);
-        this.executor = Executors.newSingleThreadExecutor();
     }
 
-    static void setEnvelope(Envelope envelope){
+    public static void setEnvelope(Envelope envelope) {
         EnvelopeShaper.envelope = envelope;
-        if(onEnvelopeChange != null){
-            onEnvelopeChange.accept(envelope);
+        if (onEnvelopeChange != null) {
+            onEnvelopeChange.accept(null);
         }
     }
 
-    boolean isAlive() {
-        return threadHandler != null && !threadHandler.isDone();
-    }
-
-    void interrupt() {
-        if (threadHandler != null) {
-            threadHandler.cancel(true);
-        }
+    public void interrupt() {
+        super.interrput();
         if (flag_Release) {
             flag_Mute = true;
         }
@@ -66,35 +53,25 @@ public class EnvelopeShaper {
         flag_Attack = true;
     }
 
-    public void cleanUp() {
-        executor.shutdownNow();
-    }
-
-    void start() {
-        threadHandler = executor.submit(() -> {
-            try {
-                attack();
-                System.out.println("attack finished");
-                if (!envelope.hasDecayAndSustain) {
-                    instrumentString.setFundamentalPitch(InstrumentString.NULL_PITCH);
-                    throw new InterruptedException();
-                }
-                decay();
-                System.out.println("decay finished");
-                sustain();
-            } catch (InterruptedException ex1) {
-                try {
-                    release();
-                    System.out.println("release finished");
-                    mute();
-                    System.out.println("mute finished");
-                } catch (InterruptedException ex2) {
-                    mute();
-                    System.out.println("mute finished");
-                    flag_Attack = true;
-                }
+    @Override
+    public void run() {
+        try {
+            attack();
+            if (!envelope.hasDecayAndSustain) {
+                instrumentString.setFundamentalPitch(InstrumentString.NULL_PITCH);
+                throw new InterruptedException();
             }
-        });
+            decay();
+            sustain();
+        } catch (InterruptedException ex1) {
+            try {
+                release();
+                mute();
+            } catch (InterruptedException ex2) {
+                mute();
+                flag_Attack = true;
+            }
+        }
     }
 
     private void attack() throws InterruptedException {
@@ -116,8 +93,8 @@ public class EnvelopeShaper {
     }
 
     private void sustain() throws InterruptedException {
-        synchronized (instrumentString.lock) {
-            instrumentString.lock.wait();
+        synchronized (instrumentString.getLock()) {
+            instrumentString.getLock().wait();
         }
     }
 
@@ -128,7 +105,7 @@ public class EnvelopeShaper {
     }
 
     private void mute() {
-        synchronized (instrumentString.lock) {
+        synchronized (instrumentString.getLock()) {
             gainControl.setValue(MIN_AMP);
             output.flush();
             output.stop();
@@ -162,7 +139,6 @@ public class EnvelopeShaper {
             final long dT = System.currentTimeMillis() - startTime;
             linCrtAmp = startAmp + dT * linAmpStepPerMilis;
             linCrtAmp = crtAmpHasNotReachedTarget.test(linCrtAmp) ? linCrtAmp : targetAmp;
-            System.out.println(linCrtAmp);
             float logCrtAmp = f.get((float) Math.round(linCrtAmp));
             gainControl.setValue(logCrtAmp);
         } while (crtAmpHasNotReachedTarget.test(linCrtAmp));
@@ -186,21 +162,11 @@ public class EnvelopeShaper {
     @Setter
     @Builder
     public static class Envelope {
-        private short attackTime = 50;
-        private short decayTime = 50;
-        private float sustainAmp = -1.0f;
-        private short releaseTime = 100;
-        private boolean hasDecayAndSustain = true;
+        private short attackTime;
+        private short decayTime;
+        private float sustainAmp;
+        private short releaseTime;
+        private boolean hasDecayAndSustain;
     }
 
-//    private int toIntAudioSample(byte[] audioBuffer, int pos) {
-//        int sample = audioBuffer[pos] << 8;
-//        sample += (audioBuffer[pos + 1] & 0x00ff);
-//        return sample;
-//    }
-//
-//    private void toByteAudioSample(byte[] audioBuffer, int pos, int sample) {
-//        audioBuffer[pos] = (byte) ((sample >> 8) & 0xff);
-//        audioBuffer[pos + 1] = (byte) (sample & 0xff);
-//    }
 }

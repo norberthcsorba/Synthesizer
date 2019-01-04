@@ -29,8 +29,8 @@
                             </columnConstraints>
                             <rowConstraints>
                                 <RowConstraints maxHeight="308.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="308.0" minHeight="10.0" prefHeight="219.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="186.0" minHeight="10.0" prefHeight="72.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="308.0" minHeight="10.0" prefHeight="242.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="186.0" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
                                 <VBox GridPane.rowIndex="1">
@@ -44,18 +44,17 @@
                                     </children>
                                 </HBox>
                                 <HBox prefHeight="81.0" prefWidth="150.0" styleClass="head">
-                                    <children>
+                           <children>
                                         <ToggleButton fx:id="btn_bypassInstrumentPedal" mnemonicParsing="false" onAction="#handleOnAction_btnBypassInstrumentPedal" selected="true" styleClass="power-btn">
-                                            <graphic>
+                                 <graphic>
                                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
                                                         <Image url="@../imgs/power.png" />
                                                     </image>
                                                 </ImageView>
-                                            </graphic>
+                                 </graphic>
                                         </ToggleButton>
-                                    </children>
-                                </HBox>
+                           </children></HBox>
                             </children>
                         </GridPane>
                         <GridPane prefHeight="380.0" prefWidth="274.0" styleClass="pedal">
@@ -68,7 +67,7 @@
                             <rowConstraints>
                                 <RowConstraints maxHeight="135.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
                                 <RowConstraints maxHeight="260.0" minHeight="10.0" prefHeight="210.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="229.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                                <RowConstraints maxHeight="229.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
                                 <RowConstraints maxHeight="110.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
@@ -138,9 +137,70 @@
                                         <Label styleClass="pedal-name" text="Envelope Shaper" />
                                     </children>
                                 </HBox>
-                        <CheckBox fx:id="check_hasDecayAndSustain" mnemonicParsing="false" text="Has decay and sustain" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" />
+                                <CheckBox fx:id="check_hasDecayAndSustain" mnemonicParsing="false" text="Has decay and sustain" GridPane.columnSpan="2147483647" GridPane.rowIndex="2" />
                             </children>
                         </GridPane>
+                  <GridPane fx:id="grid_distortionPedal" prefHeight="380.0" prefWidth="234.0" styleClass="pedal">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="68.0" minWidth="10.0" prefWidth="66.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="87.0" minWidth="10.0" prefWidth="63.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="111.0" minWidth="10.0" prefWidth="86.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="148.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="243.0" minHeight="10.0" prefHeight="238.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="68.0" minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <HBox prefHeight="84.0" prefWidth="300.0" styleClass="head" GridPane.columnSpan="2147483647">
+                           <children>
+                              <ToggleButton fx:id="btn_bypassDistPedal" mnemonicParsing="false" onAction="#handleOnAction_btnBypassDistortionPedal" selected="true" styleClass="power-btn">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../imgs/power.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </ToggleButton>
+                           </children>
+                        </HBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="property" GridPane.rowIndex="1">
+                           <children>
+                              <Label text="Pre Gain" />
+                              <Slider fx:id="slider_distPreGain" blockIncrement="0.1" majorTickUnit="0.1" max="1.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" styleClass="fader" value="1.0" />
+                              <HBox>
+                                 <children>
+                                    <TextField fx:id="field_distPreGain" styleClass="property" />
+                                    <Label text=" X" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="239.0" prefWidth="82.0" styleClass="property" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Label text="Post Gain" />
+                              <Slider fx:id="slider_distPostGain" blockIncrement="1.0" majorTickUnit="2.0" max="10.0" min="1.0" minorTickCount="1" showTickLabels="true" showTickMarks="true" styleClass="fader" value="2.0" />
+                              <HBox>
+                                 <children>
+                                    <TextField fx:id="field_distPostGain" styleClass="property" />
+                                    <Label text=" X" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="property" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <children>
+                              <Label text="Dist. Type" />
+                              <VBox fx:id="vbox_distTypes" maxHeight="171.0" prefHeight="171.0" prefWidth="86.0" spacing="5.0" styleClass="toggle-group" />
+                           </children></VBox>
+                        <HBox prefHeight="60.0" prefWidth="221.0" styleClass="footer" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
+                           <children>
+                              <Label styleClass="pedal-name" text="Distortion" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </GridPane>
                     </children>
                 </HBox>
                 <HBox id="hbox_pianoPane" maxHeight="-Infinity" maxWidth="1200.0" prefHeight="200.0" prefWidth="1200.0">

@@ -1,6 +1,9 @@
 package studio.instrument;
 
 import lombok.Getter;
+import studio.effects.AudioEffect;
+import studio.effects.Distortion;
+import studio.effects.EnvelopeShaper;
 import studio.oscillators.WaveOscillator;
 import utils.Constants;
 import utils.exceptions.ExceptionMessages;
@@ -61,12 +64,25 @@ public class MusicalInstrumentFactory {
     private List<InstrumentString> newStrings(Blueprint blueprint) {
         List<InstrumentString> strings = new ArrayList<>();
         for (int i = 0; i < blueprint.getPolyphony(); i++) {
-            InstrumentString string = new InstrumentString(newOutput(), newOscillatorList(blueprint));
+            SourceDataLine output = newOutput();
+            List<WaveOscillator> oscillators = newOscillatorList(blueprint);
+            List<AudioEffect> effects = newAudioEffectList(output);
+            InstrumentString string = new InstrumentString(output, oscillators, effects);
+            effects.stream()
+                    .filter(effect -> effect instanceof EnvelopeShaper)
+                    .forEach(effect -> ((EnvelopeShaper) effect).setInstrumentString(string));
             string.setDaemon(true);
             string.start();
             strings.add(string);
         }
         return Collections.unmodifiableList(strings);
+    }
+
+    private List<AudioEffect> newAudioEffectList(SourceDataLine output) {
+        List<AudioEffect> audioEffectList = new ArrayList<>();
+        audioEffectList.add(new EnvelopeShaper(output));
+        audioEffectList.add(new Distortion(output));
+        return Collections.unmodifiableList(audioEffectList);
     }
 
     private void loadAvailableInstruments() {

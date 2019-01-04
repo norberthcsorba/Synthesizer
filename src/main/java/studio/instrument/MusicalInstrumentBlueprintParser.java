@@ -3,6 +3,7 @@ package studio.instrument;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import studio.effects.EnvelopeShaper;
 import utils.exceptions.ExceptionMessages;
 import utils.exceptions.ObjectInstantiationException;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class MusicalInstrumentBlueprintParser {
-    
+
     public static Blueprint parseXmlBlueprintFile(File xmlBlueprintFile) {
         Document doc = newXmlParser(xmlBlueprintFile);
         return Blueprint.builder()
@@ -94,9 +95,9 @@ class MusicalInstrumentBlueprintParser {
         return harmonicAmplitudes;
     }
 
-    private static EnvelopeShaper.Envelope parseInstrumentEnvelope(Document doc){
+    private static EnvelopeShaper.Envelope parseInstrumentEnvelope(Document doc) {
         NodeList envelopeNodes = doc.getElementsByTagName("envelope");
-        if(envelopeNodes.getLength() != 1){
+        if (envelopeNodes.getLength() != 1) {
             throw new ObjectInstantiationException(ExceptionMessages.BLUEPRINT_IS_NOT_WELL_FORMED);
         }
         final String attackTime = envelopeNodes.item(0).getAttributes().getNamedItem("attack-time").getNodeValue();
@@ -104,7 +105,7 @@ class MusicalInstrumentBlueprintParser {
         final String sustainAmp = envelopeNodes.item(0).getAttributes().getNamedItem("sustain-amp").getNodeValue();
         final String releaseTime = envelopeNodes.item(0).getAttributes().getNamedItem("release-time").getNodeValue();
         final String hasDecayAndSustain = envelopeNodes.item(0).getAttributes().getNamedItem("has-decay-and-sustain").getNodeValue();
-        try{
+        try {
             return EnvelopeShaper.Envelope.builder()
                     .attackTime(Short.parseShort(attackTime))
                     .decayTime(Short.parseShort(decayTime))
@@ -112,7 +113,7 @@ class MusicalInstrumentBlueprintParser {
                     .sustainAmp(Short.parseShort(releaseTime))
                     .hasDecayAndSustain(Boolean.parseBoolean(hasDecayAndSustain))
                     .build();
-        }catch (NumberFormatException ex){
+        } catch (NumberFormatException ex) {
             throw new ObjectInstantiationException(ExceptionMessages.BLUEPRINT_IS_NOT_WELL_FORMED);
         }
     }
