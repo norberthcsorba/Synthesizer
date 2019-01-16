@@ -58,6 +58,6 @@ class MusicalInstrumentImpl implements MusicalInstrument {
 
     @Override
     public void cleanUp() {
-        //strings.forEach(WaveOscillator::cleanUp);
+        strings.forEach(InstrumentString::cleanUp);
     }
 }

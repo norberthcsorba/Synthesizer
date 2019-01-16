@@ -84,4 +84,8 @@ class InstrumentPedalController {
         });
         return bypass;
     }
+
+    void cleanUp() {
+        this.instrument.cleanUp();
+    }
 }

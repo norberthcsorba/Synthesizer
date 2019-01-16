@@ -34,7 +34,7 @@ public class InstrumentString extends Thread {
 
     public void setFundamentalPitch(float fundamentalPitch) {
         synchronized (lock) {
-            effects.forEach(AudioEffect::interrput);
+            effects.forEach(AudioEffect::interrupt);
             if (fundamentalPitch == NULL_PITCH) {
                 busy = false;
             } else {
@@ -97,4 +97,8 @@ public class InstrumentString extends Thread {
     }
 
 
+    void cleanUp() {
+        this.interrupt();
+        effects.forEach(AudioEffect::cleanUp);
+    }
 }

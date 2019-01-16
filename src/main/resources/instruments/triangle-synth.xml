@@ -2,7 +2,7 @@
     <name>Triangle Synth</name>
     <oscillator>triangle</oscillator>
     <polyphony>10</polyphony>
-    <envelope attack-time="0" decay-time="0" sustain-amp="-1.0" release-time="0" has-decay-and-sustain="false"/>
+    <envelope attack-time="0" decay-time="0" sustain-amp="-1.0" release-time="0" has-decay-and-sustain="true"/>
     <harmonics>
         <harmonic amplitude="1.0"/>
     </harmonics>

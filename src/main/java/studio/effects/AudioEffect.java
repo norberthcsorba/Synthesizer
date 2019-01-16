@@ -25,7 +25,7 @@ public abstract class AudioEffect {
         return threadHandler != null && !threadHandler.isDone();
     }
 
-    public void interrput() {
+    public void interrupt() {
         if (threadHandler != null) {
             threadHandler.cancel(true);
         }
@@ -36,4 +36,10 @@ public abstract class AudioEffect {
     }
 
     protected abstract void run();
+
+    public void cleanUp() {
+        this.interrupt();
+        this.interrupt();
+        executor.shutdownNow();
+    }
 }

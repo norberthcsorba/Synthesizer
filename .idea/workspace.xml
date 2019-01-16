@@ -2,40 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="02fa8f59-d6be-4b22-abe3-a43f6bc2de3f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/studio/effects/AudioEffect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/studio/effects/Distortion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/studio/utils/SampleConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ui/controllers/DistortionPedalController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/instrument/Blueprint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/instrument/Blueprint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/instrument/EnvelopeShaper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/effects/EnvelopeShaper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/effects/AudioEffect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/effects/AudioEffect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/studio/effects/EnvelopeShaper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/effects/EnvelopeShaper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/studio/instrument/InstrumentString.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/instrument/InstrumentString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/instrument/MusicalInstrumentBlueprintParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/instrument/MusicalInstrumentBlueprintParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/instrument/MusicalInstrumentFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/instrument/MusicalInstrumentFactory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/studio/instrument/MusicalInstrumentImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/instrument/MusicalInstrumentImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/studio/oscillators/WaveOscillator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/studio/oscillators/WaveOscillator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/controllers/EnvelopeShaperPedalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/controllers/EnvelopeShaperPedalController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ui/controllers/InstrumentPedalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/controllers/InstrumentPedalController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ui/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/controllers/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ui/controllers/PianoKeyboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/controllers/PianoKeyboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/utils/PianoKeyboardMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/utils/PianoKeyboardMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/instruments/triangle-synth.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/instruments/triangle-synth.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/instruments/violin.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/ui/layouts/layout1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ui/layouts/layout1.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/ui/styles/style1.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ui/styles/style1.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/studio/instrument/Blueprint$BlueprintBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/studio/instrument/Blueprint$BlueprintBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/studio/instrument/Blueprint.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/studio/instrument/Blueprint.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/studio/instrument/EnvelopeShaper$Envelope$EnvelopeBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/studio/instrument/EnvelopeShaper$Envelope.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/studio/instrument/EnvelopeShaper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/studio/instrument/InstrumentString.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/studio/instrument/InstrumentString.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/studio/instrument/MusicalInstrumentBlueprintParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/studio/instrument/MusicalInstrumentBlueprintParser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/studio/instrument/MusicalInstrumentFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/studio/instrument/MusicalInstrumentFactory.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/studio/oscillators/WaveOscillator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/studio/oscillators/WaveOscillator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ui/controllers/EnvelopeShaperPedalController$CustomStringConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ui/controllers/EnvelopeShaperPedalController$CustomStringConverter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ui/controllers/EnvelopeShaperPedalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ui/controllers/EnvelopeShaperPedalController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ui/controllers/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ui/controllers/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ui/controllers/PianoKeyboardController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ui/controllers/PianoKeyboardController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/instruments/triangle-synth.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/instruments/triangle-synth.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/instruments/violin.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/ui/controllers/PianoKeyboardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ui/controllers/PianoKeyboardController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ui/layouts/layout1.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ui/layouts/layout1.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ui/styles/style1.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ui/styles/style1.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ui/utils/PianoKeyboardMapper$KeyLayout.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ui/utils/PianoKeyboardMapper$KeyLayout.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ui/utils/PianoKeyboardMapper$KeyMapping.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ui/utils/PianoKeyboardMapper$KeyMapping.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ui/utils/PianoKeyboardMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ui/utils/PianoKeyboardMapper.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -88,7 +75,8 @@
     <session id="2132563417">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="15" />
+          <entry key="project.closed" value="16" />
+          <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.10" value="4" />
           <entry key="project.open.time.11" value="3" />
@@ -97,73 +85,82 @@
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="16" />
+          <entry key="project.opened" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="css" value="16" />
           <entry key="fxml" value="4" />
-          <entry key="java" value="250" />
+          <entry key="java" value="277" />
           <entry key="png" value="1" />
           <entry key="svg" value="1" />
-          <entry key="xml" value="49" />
+          <entry key="xml" value="55" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="16" />
           <entry key="Image" value="1" />
-          <entry key="JAVA" value="250" />
+          <entry key="JAVA" value="277" />
           <entry key="SVG" value="1" />
-          <entry key="XML" value="53" />
+          <entry key="XML" value="59" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="3417" />
           <entry key="dummy" value="43" />
-          <entry key="java" value="34723" />
-          <entry key="xml" value="471" />
+          <entry key="java" value="34734" />
+          <entry key="xml" value="503" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="3417" />
-          <entry key="JAVA" value="34723" />
+          <entry key="JAVA" value="34734" />
           <entry key="PLAIN_TEXT" value="43" />
-          <entry key="XML" value="471" />
+          <entry key="XML" value="503" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="-76909255">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="456" />
+          <entry key="xml" value="15" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="456" />
+          <entry key="XML" value="15" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="css" value="1" />
+          <entry key="fxml" value="1" />
+          <entry key="java" value="22" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CSS" value="1" />
+          <entry key="JAVA" value="22" />
+          <entry key="XML" value="1" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ui/controllers/EnvelopeShaperPedalController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="59">
-              <caret line="47" column="68" lean-forward="true" selection-start-line="47" selection-start-column="68" selection-end-line="47" selection-end-column="68" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ui/controllers/DistortionPedalController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="62">
-              <caret line="59" selection-start-line="59" selection-end-line="59" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -212,7 +209,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/styles/piano.css" />
         <option value="$PROJECT_DIR$/src/main/resources/styles/main.css" />
         <option value="$PROJECT_DIR$/src/main/resources/ui/layouts/layout1.fxml" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/ui/utils/EnvelopeShaperStringConverter.java" />
         <option value="$PROJECT_DIR$/src/main/java/utils/Constants.java" />
         <option value="$PROJECT_DIR$/src/main/java/ui/controllers/Pedal.java" />
@@ -220,14 +216,10 @@
         <option value="$PROJECT_DIR$/src/main/java/ui/controllers/EnvelopeShaperPedal.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/studio/app/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/app/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/studio/instrument/MusicalInstrument.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/instruments/triangle-synth.xml" />
         <option value="$PROJECT_DIR$/src/main/java/utils/exceptions/OscillatorInstantiationException.java" />
         <option value="$PROJECT_DIR$/src/main/java/utils/exceptions/MusicalInstrumentInstantiationException.java" />
         <option value="$PROJECT_DIR$/src/main/java/utils/exceptions/ExceptionMessages.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ui/utils/PianoKeyboardMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ui/controllers/InstrumentPedalController.java" />
         <option value="$PROJECT_DIR$/src/main/java/studio/instrument/Envelope.java" />
         <option value="$PROJECT_DIR$/src/main/java/studio/instrument/MusicalInstrumentBlueprintParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/studio/instrument/Blueprint.java" />
@@ -236,22 +228,27 @@
         <option value="$PROJECT_DIR$/src/main/resources/instruments/sine-synth.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/instruments/square-synth.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/instruments/violin.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/studio/instrument/MusicalInstrumentImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/studio/instrument/EnvelopeShaper.java" />
         <option value="$PROJECT_DIR$/src/main/java/studio/instrument/effects/EnvelopeShaper.java" />
         <option value="$PROJECT_DIR$/src/main/java/studio/effects/Effect.java" />
         <option value="$PROJECT_DIR$/src/main/java/studio/instrument/MusicalInstrumentFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/studio/oscillators/WaveOscillator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/studio/instrument/InstrumentString.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ui/controllers/PianoKeyboardController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/studio/effects/AudioEffect.java" />
-        <option value="$PROJECT_DIR$/src/main/java/studio/effects/EnvelopeShaper.java" />
         <option value="$PROJECT_DIR$/src/main/java/ui/controllers/EnvelopeShaperPedalController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/ui/styles/style1.css" />
         <option value="$PROJECT_DIR$/src/main/java/studio/utils/SampleConverter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ui/controllers/MainController.java" />
         <option value="$PROJECT_DIR$/src/main/java/studio/effects/Distortion.java" />
         <option value="$PROJECT_DIR$/src/main/java/ui/controllers/DistortionPedalController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/instruments/triangle-synth.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/ui/utils/PianoKeyboardMapper.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/ui/controllers/MainController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/studio/instrument/MusicalInstrumentImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/studio/effects/EnvelopeShaper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ui/controllers/InstrumentPedalController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/studio/instrument/InstrumentString.java" />
+        <option value="$PROJECT_DIR$/src/main/java/studio/effects/AudioEffect.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ui/controllers/PianoKeyboardController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/ui/styles/style1.css" />
+        <option value="$PROJECT_DIR$/src/main/java/app/Main.java" />
       </list>
     </option>
   </component>
@@ -260,6 +257,22 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState>
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="synthesizer" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="synthesizer" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
+        </path>
+      </expand>
+      <select />
+    </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="260" />
@@ -273,172 +286,62 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="synthesizer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="synthesizer2" type="462c0819:PsiDirectoryNode" />
+              <item name="synthesizer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="synthesizer" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="synthesizer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="synthesizer2" type="462c0819:PsiDirectoryNode" />
+              <item name="synthesizer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="synthesizer" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="synthesizer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="synthesizer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="synthesizer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="synthesizer2" type="462c0819:PsiDirectoryNode" />
+              <item name="synthesizer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="synthesizer" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="synthesizer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="synthesizer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="synthesizer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="synthesizer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="studio" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="synthesizer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="synthesizer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="studio" type="462c0819:PsiDirectoryNode" />
-              <item name="effects" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="synthesizer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="synthesizer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="studio" type="462c0819:PsiDirectoryNode" />
-              <item name="oscillators" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="synthesizer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="synthesizer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="synthesizer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="synthesizer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="synthesizer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="synthesizer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="synthesizer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="synthesizer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="synthesizer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="synthesizer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-              <item name="exceptions" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="synthesizer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="synthesizer2" type="462c0819:PsiDirectoryNode" />
+              <item name="synthesizer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="synthesizer" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="synthesizer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="synthesizer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="instruments" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="synthesizer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="synthesizer2" type="462c0819:PsiDirectoryNode" />
+              <item name="synthesizer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="synthesizer" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="ui" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="synthesizer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="synthesizer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-              <item name="imgs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="synthesizer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="synthesizer2" type="462c0819:PsiDirectoryNode" />
+              <item name="synthesizer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="synthesizer" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="ui" type="462c0819:PsiDirectoryNode" />
               <item name="layouts" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="synthesizer2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="synthesizer2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-              <item name="styles" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546610035944" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547661900485" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/synthesizer/1.0-SNAPSHOT/synthesizer-1.0-20190116.172522-1-jar-with-dependencies.jar" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -471,7 +374,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" singleton="true">
       <option name="MAIN_CLASS_NAME" value="app.Main" />
       <module name="synthesizer" />
@@ -479,6 +382,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="JAR" type="JarApplication" factoryName="JAR Application" singleton="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/synthesizer/1.0-SNAPSHOT/synthesizer-1.0-20190116.172522-1-jar-with-dependencies.jar" />
+      <option name="WORKING_DIRECTORY" value="D:\Faculty\PDAV\synthesizer" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JAR Application.JAR" />
+    </list>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -507,17 +420,18 @@
       <workItem from="1546522647004" duration="34000" />
       <workItem from="1546526666548" duration="11777000" />
       <workItem from="1546600089542" duration="8655000" />
+      <workItem from="1547654175632" duration="4977000" />
+      <workItem from="1547659246664" duration="2469000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="207572000" />
+    <option name="totallyTimeSpent" value="215018000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49457702" visible="true" weight="0.19083156" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49457702" visible="true" weight="0.19509594" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -530,7 +444,7 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" x="22" y="370" width="1876" height="299" id="Run" order="6" sideWeight="0.505423" visible="true" weight="0.29826465" />
+      <window_info anchor="bottom" x="22" y="370" width="1876" height="299" id="Run" order="6" sideWeight="0.505423" weight="0.29826465" />
       <window_info anchor="bottom" id="TODO" order="7" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.329718" />
@@ -546,7 +460,7 @@
       <window_info anchor="right" id="Preview" order="7" weight="0.32995737" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="right" id="Database" order="9" />
-      <window_info anchor="right" id="Maven Projects" order="10" />
+      <window_info anchor="right" id="Maven Projects" order="10" visible="true" weight="0.18443497" />
       <window_info anchor="right" id="Coverage" order="11" side_tool="true" weight="0.32995737" />
     </layout>
   </component>
@@ -573,60 +487,11 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/function/Function.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="48" column="6" selection-start-line="48" selection-start-column="6" selection-end-line="48" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/Timer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="505" selection-start-line="505" selection-end-line="505" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/studio/oscillators/SquareWaveOscillator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="96" selection-start-line="8" selection-start-column="96" selection-end-line="8" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/studio/oscillators/TriangleWaveOscillator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="6" column="85" selection-start-line="6" selection-start-column="85" selection-end-line="6" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/instruments/flute.xml" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/studio/oscillators/SawWaveOscillator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/styles/controls.css" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/styles/piano.css" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/styles/pedalboard.css" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/ui/imgs/browse-ico.png" />
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="33" column="21" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/piano-keyboard-mapping.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="3" column="71" lean-forward="true" selection-start-line="3" selection-start-column="71" selection-end-line="3" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/instruments/piano.xml" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/instruments/violin2.xml" />
     <entry file="file://$PROJECT_DIR$/src/main/java/utils/Constants.java">
@@ -640,13 +505,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/ui/layouts/instrument-pedal.fxml" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ui/controllers/Pedal.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ui/utils/EnvelopeShaperStringConverter.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/app/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="24" column="70" selection-start-line="24" selection-start-column="70" selection-end-line="24" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/utils/exceptions/ObjectInstantiationException.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -658,13 +516,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="6" column="112" selection-start-line="6" selection-start-column="112" selection-end-line="6" selection-end-column="112" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ui/utils/PianoKeyboardMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="700">
-          <caret line="121" column="104" selection-start-line="121" selection-start-column="104" selection-end-line="121" selection-end-column="104" />
         </state>
       </provider>
     </entry>
@@ -684,10 +535,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/instruments/saw-synth.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="108" selection-start-line="4" selection-start-column="108" selection-end-line="4" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/instruments/square-synth.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="108" selection-start-line="4" selection-start-column="108" selection-end-line="4" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/instruments/violin.xml" />
+    <entry file="file://$PROJECT_DIR$/../GuitarEffects/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="198" lean-forward="true" selection-start-line="198" selection-end-line="198" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ui/controllers/EnvelopeShaperPedalController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="47" column="68" selection-start-line="47" selection-start-column="68" selection-end-line="47" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/instruments/triangle-synth.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="13" lean-forward="true" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/piano-keyboard-mapping.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="71" lean-forward="true" selection-start-line="3" selection-start-column="71" selection-end-line="3" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ui/utils/PianoKeyboardMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="454">
+          <caret line="144" column="25" lean-forward="true" selection-start-line="144" selection-start-column="25" selection-end-line="144" selection-end-column="25" />
+          <folding>
+            <element signature="e#689#690#0" expanded="true" />
+            <element signature="e#733#734#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/studio/instrument/MusicalInstrumentBlueprintParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1890">
-          <caret line="107" column="34" selection-start-line="107" selection-start-column="34" selection-end-line="107" selection-end-column="34" />
+        <state relative-caret-position="374">
+          <caret line="22" column="31" selection-start-line="22" selection-start-column="31" selection-end-line="22" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -702,135 +610,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/instruments/saw-synth.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="108" selection-start-line="4" selection-start-column="108" selection-end-line="4" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/instruments/sine-synth.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="4" column="108" selection-start-line="4" selection-start-column="108" selection-end-line="4" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/instruments/square-synth.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="108" selection-start-line="4" selection-start-column="108" selection-end-line="4" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/instruments/violin.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="9" column="35" lean-forward="true" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/instruments/triangle-synth.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="108" selection-start-line="4" selection-start-column="108" selection-end-line="4" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/studio/instrument/MusicalInstrument.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="35" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/studio/instrument/MusicalInstrumentImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/studio/instrument/MusicalInstrumentFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="83" column="38" lean-forward="true" selection-start-line="83" selection-start-column="38" selection-end-line="83" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/studio/instrument/InstrumentString.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="61" selection-start-line="61" selection-end-line="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/ui/layouts/layout1.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1100" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ui/controllers/PianoKeyboardController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="23" column="4" lean-forward="true" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/studio/effects/AudioEffect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/studio/effects/EnvelopeShaper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/ui/styles/style1.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="554">
-          <caret line="178" column="22" selection-start-line="178" selection-start-column="22" selection-end-line="178" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/studio/utils/SampleConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/studio/oscillators/WaveOscillator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -841,64 +624,197 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../GuitarEffects/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/studio/oscillators/SawWaveOscillator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="520">
-          <caret line="198" lean-forward="true" selection-start-line="198" selection-end-line="198" />
+        <state relative-caret-position="40">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ui/controllers/MainController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/studio/oscillators/SquareWaveOscillator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="107" column="39" selection-start-line="107" selection-start-column="39" selection-end-line="107" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3799#3800#0" expanded="true" />
-            <element signature="e#3867#3868#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="160">
+          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ui/controllers/InstrumentPedalController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/studio/oscillators/TriangleWaveOscillator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="81" column="40" lean-forward="true" selection-start-line="81" selection-start-column="40" selection-end-line="81" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="120">
+          <caret line="6" column="85" selection-start-line="6" selection-start-column="85" selection-end-line="6" selection-end-column="85" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/studio/effects/Distortion.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/studio/instrument/MusicalInstrumentFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="56" column="18" selection-start-line="56" selection-start-column="18" selection-end-line="56" selection-end-column="18" />
+        <state relative-caret-position="311">
+          <caret line="28" column="26" lean-forward="true" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2576#2577#0" expanded="true" />
-            <element signature="e#2644#2645#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ui/controllers/EnvelopeShaperPedalController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="59">
-          <caret line="47" column="68" lean-forward="true" selection-start-line="47" selection-start-column="68" selection-end-line="47" selection-end-column="68" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#648#649#0" expanded="true" />
+            <element signature="e#690#691#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ui/controllers/DistortionPedalController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="62">
-          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        <state relative-caret-position="500">
+          <caret line="25" column="43" lean-forward="true" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/studio/utils/SampleConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="24" column="47" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/studio/oscillators/WaveOscillator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/lang/Iterable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="71" column="17" selection-start-line="71" selection-start-column="17" selection-end-line="71" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ui/controllers/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="717">
+          <caret line="111" column="39" lean-forward="true" selection-start-line="111" selection-start-column="39" selection-end-line="111" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3892#3893#0" expanded="true" />
+            <element signature="e#3943#3944#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ui/controllers/InstrumentPedalController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="717">
+          <caret line="88" column="28" selection-start-line="88" selection-start-column="28" selection-end-line="88" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3114#3115#0" expanded="true" />
+            <element signature="e#3155#3156#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/studio/instrument/MusicalInstrument.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="13" lean-forward="true" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/studio/instrument/MusicalInstrumentImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="717">
+          <caret line="61" column="47" selection-start-line="61" selection-start-column="47" selection-end-line="61" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1747#1748#0" expanded="true" />
+            <element signature="e#1805#1806#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/studio/effects/Distortion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="857">
+          <caret line="57" column="55" selection-start-line="57" selection-start-column="55" selection-end-line="57" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/studio/instrument/InstrumentString.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="694">
+          <caret line="101" column="40" lean-forward="true" selection-start-line="101" selection-start-column="40" selection-end-line="101" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/java/util/concurrent/ExecutorService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="181" column="19" selection-start-line="181" selection-start-column="19" selection-end-line="181" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/studio/effects/AudioEffect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="42" column="21" lean-forward="true" selection-start-line="42" selection-start-column="21" selection-end-line="42" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#807#808#0" expanded="true" />
+            <element signature="e#865#866#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/studio/effects/EnvelopeShaper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="580">
+          <caret line="161" column="24" selection-start-line="161" selection-start-column="24" selection-end-line="161" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ui/controllers/PianoKeyboardController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="110" column="80" selection-start-line="110" selection-start-column="80" selection-end-line="110" selection-end-column="80" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/ui/layouts/layout1.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/ui/styles/style1.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2179">
+          <caret line="182" column="1" selection-start-line="182" selection-start-column="1" selection-end-line="182" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/app/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="17" column="42" lean-forward="true" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
         </state>
       </provider>
     </entry>

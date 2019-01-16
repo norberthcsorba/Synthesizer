@@ -108,4 +108,7 @@ public class MainController {
         distortionPedalController.handleOnAction_btnBypass();
     }
 
+    public void cleanUp() {
+        instrumentPedalController.cleanUp();
+    }
 }

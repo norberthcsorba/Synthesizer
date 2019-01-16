@@ -5,6 +5,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import utils.Constants;
 import utils.exceptions.ExceptionMessages;
 import utils.exceptions.ObjectInstantiationException;
 
@@ -22,8 +23,8 @@ public class PianoKeyboardMapper {
     private List<KeyMapping> mappingList = new ArrayList<>();
     private Map<String, KeyMapping> mappingTable = new HashMap<>();
 
-    public PianoKeyboardMapper(File xmlMappingFile) {
-        loadFromFile(xmlMappingFile);
+    public PianoKeyboardMapper() {
+        loadFromFile(new File(Constants.PIANO_KEYBOARD_MAPPING_FILE_PATH));
     }
 
     public boolean shiftMapping(int nrOfKeysToShift) {

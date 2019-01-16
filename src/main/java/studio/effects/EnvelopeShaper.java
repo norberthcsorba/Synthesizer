@@ -43,7 +43,7 @@ public class EnvelopeShaper extends AudioEffect {
     }
 
     public void interrupt() {
-        super.interrput();
+        super.interrupt();
         if (flag_Release) {
             flag_Mute = true;
         }
@@ -155,6 +155,13 @@ public class EnvelopeShaper extends AudioEffect {
         if (interruptFlag.get()) {
             throw new InterruptedException();
         }
+    }
+
+    @Override
+    public void cleanUp() {
+        super.cleanUp();
+        output.close();
+        output.stop();
     }
 
 

@@ -11,18 +11,21 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/ui/layouts/layout1.fxml"));
             Pane root = fxmlLoader.load();
             Scene scene = new Scene(root);
-            MainController controller = (MainController) fxmlLoader.getController();
+            MainController controller = fxmlLoader.getController();
             controller.setCrtScene(scene);
             primaryStage.setScene(scene);
             primaryStage.show();
 
-//            primaryStage.setOnHiding(event -> controller.cleanUp());
+            primaryStage.setResizable(false);
+            primaryStage.setMaxWidth(1250);
+            primaryStage.setMaxHeight(650);
+            primaryStage.setOnHiding(event -> controller.cleanUp());
         } catch (IOException ex) {
             ex.printStackTrace();
         }

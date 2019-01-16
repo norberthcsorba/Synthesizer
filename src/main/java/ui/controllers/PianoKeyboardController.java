@@ -10,12 +10,11 @@ import ui.utils.PianoKeyboardMapper;
 import utils.Constants;
 import utils.exceptions.ObjectInstantiationException;
 
-import java.io.File;
-
 class PianoKeyboardController {
 
     private PianoKeyboardMapper keyboardMapper;
     private InstrumentPedalController instrumentPedalController;
+    private long lastTimeShiftMappingWasPressed = System.currentTimeMillis();
 
     private Scene crtScene;
     private HBox hbox_pianoKeyboard;
@@ -30,7 +29,7 @@ class PianoKeyboardController {
 
     void initialize() {
         try {
-            keyboardMapper = new PianoKeyboardMapper(new File(Constants.PIANO_KEYBOARD_MAPPING_FILE_PATH));
+            keyboardMapper = new PianoKeyboardMapper();
             initPianoView();
             crtScene.setOnKeyPressed(this::handleKeyPressed);
             crtScene.setOnKeyReleased(this::handleKeyReleased);
@@ -109,6 +108,11 @@ class PianoKeyboardController {
     }
 
     private void handleShiftMapping(KeyEvent event) {
+        if (System.currentTimeMillis() - this.lastTimeShiftMappingWasPressed < 200) {
+            this.lastTimeShiftMappingWasPressed = System.currentTimeMillis();
+            return;
+        }
+        this.lastTimeShiftMappingWasPressed = System.currentTimeMillis();
         switch (event.getCode()) {
             case F10:
                 keyboardMapper.shiftMapping(-Constants.OCTAVE_SIZE);
