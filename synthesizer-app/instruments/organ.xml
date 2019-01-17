@@ -1,0 +1,14 @@
+<instrument>
+    <name>Organ</name>
+    <oscillator>sine</oscillator>
+    <polyphony>10</polyphony>
+    <envelope attack-time="0" decay-time="0" sustain-amp="-1.0" release-time="0" has-decay-and-sustain="true"/>
+    <harmonics>
+        <harmonic amplitude="1.0"/>
+        <harmonic amplitude="0.125"/>
+        <harmonic amplitude="0.062"/>
+        <harmonic amplitude="0.125"/>
+        <harmonic amplitude="0.03"/>
+        <harmonic amplitude="0.25"/>
+    </harmonics>
+</instrument>
