@@ -67,6 +67,9 @@ class InstrumentPedalController {
         Blueprint instrumentToLoad = combo_availableInstruments.getValue();
         if (instrumentToLoad != null) {
             try {
+                if(this.instrument != null){
+                    this.instrument.cleanUp();
+                }
                 this.instrument = instrumentFactory.createFromBlueprint(instrumentToLoad);
             } catch (ObjectInstantiationException ex) {
                 new Alert(Alert.AlertType.ERROR, ex.getMessage()).show();
